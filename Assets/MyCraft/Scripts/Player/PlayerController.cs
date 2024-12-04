@@ -1,13 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
+    private IPlayerAction _walk;
+    private IPlayerAction _jump;
+
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        // ファクトリを利用して動作クラスを生成
+        _walk = PlayerActionFactory.CreateAction<Walk>("WalkAction");
+       
     }
 
+    public void PerformWalk()
+    {
+        _walk.PlayerAction();
+    }
+
+   
 }
