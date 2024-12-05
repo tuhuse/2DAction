@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerWalk : PlayerController, IWalk
+public class PlayerWalk : BasePlayerWalk
 {
     private GetInputManager _getInput;
     // Rigidbody2DÇÃéQè∆
@@ -22,21 +22,21 @@ public class PlayerWalk : PlayerController, IWalk
 
     public void UpdateMove()
     {
-        if (_getInput.IsRightMove)
+        if (_getInput.CanRightMove)
         {
-            RightWalk();
+            RightWalK();
         }
-        else if (_getInput.IsLeftMove)
+        else if (_getInput.CanLeftMove)
         {
-            LeftWalk();
+            LeftWalK();
         }
     }
-    public void RightWalk()
+    public override void RightWalK()
     {
         _playerRigidbody.velocity = new Vector2(WalkSpeed, _playerRigidbody.velocity.y);
     }
 
-    public void LeftWalk()
+    public override void LeftWalK()
     {
         _playerRigidbody.velocity = new Vector2(-WalkSpeed, _playerRigidbody.velocity.y);
     }

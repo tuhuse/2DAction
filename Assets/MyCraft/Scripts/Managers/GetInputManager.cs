@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GetInputManager : PlayerController
+public class GetInputManager : MonoBehaviour
 {
-    
+    public string WalkPadInput => "Lstick";
+    public string JumpPadInput => "Jump";
+    public string AttackPadInput => "Attack";
+    public string SkillPadInput => "Skill";
 
     public static GetInputManager Instance { get; private set; }
 
 
-    public bool IsLeftMove { get; private set; } = default;
-    public bool IsRightMove { get;private set; } = default;
-    public bool IsJump { get; set; } = default;
-    public bool IsUseSkill { get; set; } = default;
+    public bool CanLeftMove { get; private set; } = default;
+    public bool CanRightMove { get;private set; } = default;
+    public bool CanJump { get; set; } = default;
+    public bool CanUseSkill { get; set; } = default;
     private void Awake()
     {
         // ÉVÉìÉOÉãÉgÉìÇÃê›íË
@@ -28,31 +29,19 @@ public class GetInputManager : PlayerController
     }
     private void FixedUpdate()
     {
-        if (WalkPadInput < 0 || Input.GetKey(KeyCode.A))
-        {
-            IsLeftMove = true;
-        }
-        if (WalkPadInput > 0 || Input.GetKey(KeyCode.D))
-        {
-            IsRightMove = true;
-        }
+        CanLeftMove = /*Input.GetAxis(WalkPadInput) < 0 ||*/ Input.GetKey(KeyCode.A);
+
+        CanRightMove = /*Input.GetAxis(WalkPadInput) > 0 ||*/ Input.GetKey(KeyCode.D);
+        
         
     }
     // Update is called once per frame
    private void Update()
     {
-        if (Input.GetButtonDown(SkillPadInput) || Input.GetKeyDown(KeyCode.Q))
-        {
-            IsUseSkill = true;
-        }
-        if (WalkPadInput == 0||Input.GetKeyUp(KeyCode.A)||Input.GetKeyUp(KeyCode.D))
-        {
-            IsLeftMove = false;
-            IsRightMove = false;
-        }
-        if (Input.GetButtonDown(JumpPadInput) || Input.GetKeyDown(KeyCode.Space))
-        {
+        CanUseSkill = /*Input.GetButtonDown(SkillPadInput) ||*/ Input.GetKeyDown(KeyCode.Q);
+       CanJump = /*Input.GetButtonDown(JumpPadInput) ||*/ Input.GetKeyDown(KeyCode.Space);
 
-        }
+      
+
     }
 }
