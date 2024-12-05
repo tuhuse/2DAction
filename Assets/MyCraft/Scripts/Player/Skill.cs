@@ -6,10 +6,8 @@ public class Skill : MonoBehaviour,ISkill
     {
 
     }
-    public void PlayerAction()
+    void ISkill.Skill()
     {
         throw new System.NotImplementedException();
     }
-
-    
 }

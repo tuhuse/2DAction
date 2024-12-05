@@ -18,7 +18,9 @@ public class Walk : MonoBehaviour, IWalk
         }
     }
 
-    public virtual void PlayerAction()
+   
+
+    void IWalk.Walk()
     {
         // Rigidbody2D‚ªnull‚Å‚È‚¢ê‡‚ÉˆÚ“®ˆ—‚ğÀs
         if (_playerRigidbody != null)

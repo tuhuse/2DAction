@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // ファクトリを利用して動作クラスを生成
-        _walk = PlayerActionFactory.CreateAction<Walk>("WalkAction");
+     
        
     }
 

@@ -13,8 +13,7 @@ public class Attack : MonoBehaviour,IAttack
         _playerBoxCollider.enabled = false;
 
     }
-
-    public virtual void PlayerAction()
+    void IAttack.Attack()
     {
         _playerBoxCollider.enabled = true;
     }

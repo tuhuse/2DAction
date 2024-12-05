@@ -9,9 +9,10 @@ public class Jump : MonoBehaviour,IJump
         _playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void PlayerAction()
+   
+
+    void IJump.Jump()
     {
         _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, JumpPower);
     }
-  
 }

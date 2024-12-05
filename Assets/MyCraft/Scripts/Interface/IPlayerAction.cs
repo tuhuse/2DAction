@@ -3,19 +3,31 @@
 // プレイヤーの基本インターフェース
 public interface IPlayerAction
 {
-    
+
     void PlayerAction();
 }
 
 // 移動に関するインターフェース
-public interface IWalk : IPlayerAction { }
+public interface IWalk
+{
+    void Walk();
+}
 
 
 // ジャンプに関するインターフェース
-public interface IJump : IPlayerAction { }
+public interface IJump
+{
+    void Jump();
+}
 
 // 攻撃に関するインターフェース
-public interface IAttack : IPlayerAction { }
+public interface IAttack
+{
+    void Attack();
+}
 
 // スキルに関するインターフェース
-public interface ISkill : IPlayerAction { }
+public interface ISkill
+{
+    void Skill();
+}
