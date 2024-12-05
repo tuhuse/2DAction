@@ -1,20 +1,15 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public abstract class PlayerController : MonoBehaviour
 {
-    private IPlayerAction _walk;
-    private IPlayerAction _jump;
+    
+    public float JumpPower { get; set; } = 5f;
+    public float WalkSpeed { get; set; } = 10f;
 
-    private void Start()
-    {
-     
-       
-    }
+   public float WalkPadInput =>Input.GetAxis("Lstick");
+    public string JumpPadInput => "Jump";
+   public string AttackPadInput => "Attack";
+   public string SkillPadInput => "Skill";
 
-    public void PerformWalk()
-    {
-        _walk.PlayerAction();
-    }
 
-   
 }

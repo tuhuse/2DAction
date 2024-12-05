@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Skill : MonoBehaviour,ISkill
+public class Skill : PlayerController,ISkill
 {
     void Start()
     {

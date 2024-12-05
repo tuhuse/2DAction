@@ -3,21 +3,22 @@
 // プレイヤーの基本インターフェース
 public interface IPlayerAction
 {
-
     void PlayerAction();
 }
 
 // 移動に関するインターフェース
 public interface IWalk
 {
-    void Walk();
+    void RightWalk();
+    void LeftWalk();
+
 }
 
 
 // ジャンプに関するインターフェース
 public interface IJump
 {
-    void Jump();
+   void Jump();
 }
 
 // 攻撃に関するインターフェース
