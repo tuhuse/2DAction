@@ -4,7 +4,7 @@ using UnityEngine;
 /// </summary>
 public class NomalJump : BasePlayerJump
 {
-    private GetInputManager _getInput;
+    
     private Rigidbody2D _playerRigidbody = default;
     private BoxCollider2D _playerBoxCollider= default;
     private const int MAX_JUMP_COUNT = 2;
@@ -13,28 +13,25 @@ public class NomalJump : BasePlayerJump
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _playerBoxCollider = GetComponent<BoxCollider2D>();
-        _getInput = GetInputManager.Instance;
+      
     }
-    private void Update()
-    {
-        if (_getInput.CanJump&&!IsJump)
-        {
-            Jump();
-        }
-       
-    }
+   
     
     /// <summary>
     /// ’Êí‘•”õ‚ÌƒWƒƒƒ“ƒv
     /// </summary>
     public override void Jump()
     {
-        if (_currentJumpCount < MAX_JUMP_COUNT)
+        if (!IsJump)
         {
-            _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, JumpPower);
-            _currentJumpCount++;
-            IsJump = true;
+            if (_currentJumpCount < MAX_JUMP_COUNT)
+            {
+                _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, JumpPower);
+                _currentJumpCount++;
+                IsJump = true;
+            }
         }
+    
     }
 
     private void OnCollisionStay2D(Collision2D collision)

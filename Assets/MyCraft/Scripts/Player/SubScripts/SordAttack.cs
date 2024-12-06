@@ -18,6 +18,5 @@ public class SordAttack : BasePlayerAttack
     {
         _playerBoxCollider.enabled = true;
     }
-
    
 }
