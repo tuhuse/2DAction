@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     {
         if (_playerAttack != null)
         {
-            _playerAttack.Attack();
+            _playerAttack.TryAttack();
         }
     }
 }

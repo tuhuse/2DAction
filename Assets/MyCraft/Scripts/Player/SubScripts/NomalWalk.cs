@@ -1,5 +1,5 @@
 using UnityEngine;
-[CreateAssetMenu]
+
 public class NomalWalk : BasePlayerWalk
 {
     //private GetInputManager _getInput;

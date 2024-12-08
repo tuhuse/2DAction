@@ -17,6 +17,14 @@ public class SordAttack : BasePlayerAttack
     public override void Attack()
     {
         _playerBoxCollider.enabled = true;
+        StartCoroutine(AttackCoolDown());
     }
-   
+    protected IEnumerator AttackCoolDown()
+    {
+        _isAttackCoolDown = true;
+        yield return new WaitForSeconds(_attackCoolDown);
+        _playerBoxCollider.enabled = false;
+        yield return new WaitForSeconds(_attackCoolDown);
+        _isAttackCoolDown = false;
+    }
 }
