@@ -423,6 +423,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1546722603}
   - component: {fileID: 1546722602}
+  - component: {fileID: 1546722605}
+  - component: {fileID: 1546722604}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -457,6 +459,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546722604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546722601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874d2d37e4ae2614e9abcf37ca207582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1546722605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546722601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65cee0e269f2124f8778cc6e9dfc116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752884126
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,75 +580,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4558475463343806, guid: 1f94dbec0c84cc94e9d9fc9b93e7dc44, type: 3}
   m_PrefabInstance: {fileID: 7300093442484679895}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &1847217548 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198416100499550440, guid: 1f94dbec0c84cc94e9d9fc9b93e7dc44, type: 3}
-  m_PrefabInstance: {fileID: 7300093442484679895}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &321705486164676009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603133611783700573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0105e23e272418c94b0bbf1e7d02dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationEvents: {fileID: 0}
-  Params:
-    Name: 
-    FirearmTexture: {fileID: 0}
-    Type: 0
-    HoldType: 0
-    MagazineType: 0
-    LoadType: 0
-    AutomaticFire: 0
-    AutomaticLoad: 0
-    FireRateInMinute: 0
-    MagazineCapacity: 0
-    Recoil: 0
-    Accuracy: 0
-    MuzzleVelocity: 0
-    SlidePosition: {x: 0, y: 0}
-    MagazinePosition: {x: 0, y: 0}
-    FireMuzzlePosition: {x: 0, y: 0}
-    FireMuzzlePrefab: {fileID: 0}
-    ProjectilePrefab: {fileID: 0}
-    SoundFire: {fileID: 0}
-    SoundClipIn: {fileID: 0}
-    SoundClipOut: {fileID: 0}
-    SoundLoad: {fileID: 0}
-    SoundPump: {fileID: 0}
-    HoldAnimation: {fileID: 0}
-    LoadAnimation: {fileID: 0}
-    ReloadAnimation: {fileID: 0}
-    Meta: []
-  SlideTransform: {fileID: 8606936768828571461}
-  MagazineTransform: {fileID: 8606409630995102699}
-  FireTransform: {fileID: 5705459240253363943}
-  Fire: {fileID: 7399786059874695043}
-  Reload: {fileID: 5120682172160622929}
-  AmmoShooted: 0
---- !u!114 &5120682172160622929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603133611783700573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9615df837a0e43948b5e4c09b832dbed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Character: {fileID: 8572120787966572745}
-  Firearm: {fileID: 321705486164676009}
-  AudioSource: {fileID: 8522476230369730191}
-  ReloadButtonDown: 0
-  Reloading: 0
 --- !u!212 &5606988305331420909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2027,33 +1984,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5671274436978429147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702795211041787923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844ae1c8136940509fff67bb7fb55ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  From: {x: 0.015, y: -0.2, z: 0}
-  To: {x: 0.029, y: -0.16, z: 0}
---- !u!114 &5671375520260372377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5703348797127774359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67bdb88bfca3491eb2d33868fd2caa10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Edge: {fileID: 5706625877670369823}
 --- !u!1 &5701995144324002171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2078,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5706747338860857751}
-  - component: {fileID: 5671274436978429147}
   - component: {fileID: 5607043771511885863}
   m_Layer: 0
   m_Name: Finger
@@ -2336,7 +2265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5705074237885153447}
   - component: {fileID: 5607848403867262991}
-  - component: {fileID: 5671375520260372377}
   m_Layer: 0
   m_Name: MeleeWeapon
   m_TagString: Untagged
@@ -3095,62 +3023,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f94dbec0c84cc94e9d9fc9b93e7dc44, type: 3}
---- !u!114 &7399786059874695043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603133611783700573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6073c44d26430a87a351b9a430bd08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Character: {fileID: 8572120787966572745}
-  Firearm: {fileID: 321705486164676009}
-  Finger: {fileID: 5671274436978429147}
-  Slide: {fileID: 8606417993325769281}
-  Forestock: {fileID: 8606136623668669271}
-  ArmL: {fileID: 5705238056271880361}
-  ArmR: {fileID: 8606530519366076333}
-  Shell: {fileID: 8603870225358258545}
-  FireMuzzle: {fileID: 1847217548}
-  CreateBullets: 0
-  FireButtonDown: 0
-  FireButtonPressed: 0
-  FireButtonUp: 0
---- !u!114 &8035544403512100987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602689787307546513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb76bf0bb72b4f2d9236b4a4e21bb2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WidthSlider: {fileID: 0}
-  HeightSlider: {fileID: 0}
-  Head: {fileID: 8606296873540784771}
-  Torso: {fileID: 8606218079954744331}
-  ArmL: {fileID: 8605893805114431485}
-  ArmR:
-  - {fileID: 8606530519366076333}
-  - {fileID: 8606577956616239303}
-  Pelvis: {fileID: 8606721675728409907}
-  LegL: {fileID: 8605835603223511863}
-  LegR: {fileID: 8606044816001645119}
-  MeleeWeapon:
-  - {fileID: 8606145602156509171}
-  - {fileID: 8606145602156509171}
-  Shield: {fileID: 8606420532644002011}
-  Bow:
-  - {fileID: 8606662307130971387}
-  - {fileID: 8606662307130971387}
-  Firearm: {fileID: 8605904749257937553}
 --- !u!331 &8356429551305017003
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -6185,269 +6057,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &8572068869715659893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602689787307546513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f33505e333043a888a0224eaf767e80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortingGroup: {fileID: 8470446737077464133}
-  Sprites:
-  - {fileID: 8472698788694966143}
-  - {fileID: 8472850920899446049}
-  - {fileID: 8472328316067922489}
-  - {fileID: 8472206794414410169}
-  - {fileID: 5606988305331420909}
-  - {fileID: 8471494121569308275}
-  - {fileID: 8472798022255616309}
-  - {fileID: 8471370385294502765}
-  - {fileID: 8472287810677699633}
-  - {fileID: 8472155341926940823}
-  - {fileID: 8472763191769001009}
-  - {fileID: 8471475914484840367}
-  - {fileID: 5607000443914779099}
-  - {fileID: 5608734089320928865}
-  - {fileID: 0}
-  - {fileID: 8471342850138396507}
-  - {fileID: 8471310014409400053}
-  - {fileID: 8472235734944507763}
-  - {fileID: 8471503786904682125}
-  - {fileID: 8471946381171638007}
-  - {fileID: 8472231582916305871}
-  - {fileID: 5607048218281432219}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 8472028727003086547}
-  - {fileID: 8471404735439602715}
-  - {fileID: 8472134643522234143}
-  - {fileID: 8471434137342057589}
-  - {fileID: 8472303261740452041}
-  - {fileID: 5608715241117057819}
-  - {fileID: 5607056900535930955}
-  - {fileID: 5607991659946717291}
-  - {fileID: 8472784885686127207}
-  - {fileID: 8472020204245821357}
-  - {fileID: 8472109174811434683}
-  - {fileID: 5607224317243699829}
-  - {fileID: 5607882893349499563}
-  - {fileID: 5607156769402477209}
-  - {fileID: 5607183053348383177}
-  - {fileID: 5607152485922735279}
-  - {fileID: 5607340146671383635}
-  - {fileID: 8472161588963229993}
-  - {fileID: 8472357922488476879}
-  - {fileID: 8472688005742742325}
-  - {fileID: 8471478597491024659}
-  - {fileID: 8472103915145997765}
-  - {fileID: 8472227891668545059}
-  - {fileID: 8472113944110334255}
-  - {fileID: 8471861223559576853}
-  - {fileID: 8471469479288103113}
-  - {fileID: 8471541654819124729}
-  - {fileID: 8471891533791039009}
-  - {fileID: 8471940408524982645}
-  - {fileID: 8471365418518487989}
-  - {fileID: 8472808873856506573}
-  - {fileID: 8471860763866945697}
-  - {fileID: 5607150479883464281}
-  - {fileID: 5607842876660292665}
-  - {fileID: 5607106315325241283}
-  - {fileID: 8471882262122123473}
-  - {fileID: 8472103129852209175}
-  - {fileID: 8471346746182106443}
-  - {fileID: 8471938723127557581}
-  - {fileID: 0}
-  - {fileID: 5607848403867262991}
-  - {fileID: 8471896025727740699}
-  - {fileID: 5607858533975094111}
-  - {fileID: 8471347888944848791}
-  - {fileID: 5608944282790485643}
-  - {fileID: 5607956296966891937}
-  - {fileID: 8472165838494617477}
-  - {fileID: 5607324871590554369}
-  - {fileID: 5607278784223857057}
-  - {fileID: 5607243521565782061}
-  - {fileID: 5607319369182906787}
-  - {fileID: 5607968766206053835}
-  - {fileID: 8472264331678606079}
-  - {fileID: 5607043771511885863}
-  - {fileID: 8472769618118363291}
-  - {fileID: 5607974216304478681}
-  - {fileID: 8471907190863392725}
-  - {fileID: 8472763608692541481}
---- !u!114 &8572120787966572745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602689787307546513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9bab99a464f488298c9d9629a889d97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpriteCollection: {fileID: 11400000, guid: 620e7b0c742440a4be6c065493edd0eb, type: 2}
-  Head: {fileID: 21300000, guid: 174bc157635e4532914988ddbf569498, type: 3}
-  HeadMask: {fileID: 21300000, guid: 693750ef760a417eb65ee4a3ad81f113, type: 3}
-  Ears: {fileID: 21300000, guid: 7e5b762ea8bf4dc6a2f9d1598eb3c6ea, type: 3}
-  Hair: {fileID: 21300000, guid: d57c3f5fedf646f0aad587e9914b351f, type: 3}
-  HairMask: {fileID: 8356429551305017003}
-  Beard: {fileID: 0}
-  Body:
-  - {fileID: 21300004, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300002, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300022, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300010, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300008, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300016, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300018, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300012, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300006, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300014, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300020, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  - {fileID: 21300000, guid: 7f049dfc29eb4a27a35fe07f89e20e2a, type: 3}
-  Expression: Default
-  Expressions:
-  - Name: Default
-    Eyebrows: {fileID: 21300000, guid: 334b86a048fc4651a618e411bb4b9bcf, type: 3}
-    Eyes: {fileID: 21300000, guid: 9830a5e93d174dec89a098759997b4ad, type: 3}
-    EyesColor: {r: 0, g: 0.78431374, b: 1, a: 1}
-    Mouth: {fileID: 21300000, guid: 34c4cbf6a3374fda8cb2d8c91e7d2b2d, type: 3}
-  - Name: Angry
-    Eyebrows: {fileID: 21300000, guid: 54a7303746524cc8bbcd3c819bc99961, type: 3}
-    Eyes: {fileID: 0}
-    EyesColor: {r: 0, g: 0.78431374, b: 1, a: 1}
-    Mouth: {fileID: 21300000, guid: 6b8e347645084b808329aa18a8d05499, type: 3}
-  - Name: Dead
-    Eyebrows: {fileID: 21300000, guid: 334b86a048fc4651a618e411bb4b9bcf, type: 3}
-    Eyes: {fileID: 21300000, guid: 919ab049f42f490e94fc46adfc0f854d, type: 3}
-    EyesColor: {r: 0, g: 0.78431374, b: 1, a: 1}
-    Mouth: {fileID: 21300000, guid: fea9ed3a6bb54b03925cf963d316123c, type: 3}
-  Helmet: {fileID: 21300000, guid: 74b9816a2f554cfd9ef9d8b61bb9f915, type: 3}
-  Earrings: {fileID: 0}
-  Glasses: {fileID: 0}
-  Mask: {fileID: 0}
-  PrimaryMeleeWeapon: {fileID: 21300000, guid: b4cecd4342cb4cbaaa740f5587ffedb2, type: 3}
-  SecondaryMeleeWeapon: {fileID: 0}
-  Armor:
-  - {fileID: 21300004, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300002, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300022, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300010, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300008, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300016, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300018, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300012, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300006, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300014, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300020, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  - {fileID: 21300000, guid: 2552032f57804288b1cf3512de976866, type: 3}
-  Cape: {fileID: 0}
-  Back: {fileID: 0}
-  Shield: {fileID: 21300000, guid: a07c5229371041ce901362bef4e0d1c5, type: 3}
-  Bow: []
-  Firearms: []
-  HeadRenderer: {fileID: 8472103915145997765}
-  EarsRenderer: {fileID: 8471891533791039009}
-  HairRenderer: {fileID: 8471541654819124729}
-  EyebrowsRenderer: {fileID: 8471469479288103113}
-  EyesRenderer: {fileID: 8472227891668545059}
-  MouthRenderer: {fileID: 8471861223559576853}
-  BeardRenderer: {fileID: 8472113944110334255}
-  BodyRenderers:
-  - {fileID: 8472206794414410169}
-  - {fileID: 5606988305331420909}
-  - {fileID: 8472161588963229993}
-  - {fileID: 8472109174811434683}
-  - {fileID: 8472235734944507763}
-  - {fileID: 5608944282790485643}
-  - {fileID: 5607043771511885863}
-  - {fileID: 5607278784223857057}
-  - {fileID: 8471494121569308275}
-  - {fileID: 8472763191769001009}
-  - {fileID: 8471475914484840367}
-  - {fileID: 8472357922488476879}
-  - {fileID: 5607224317243699829}
-  - {fileID: 8471310014409400053}
-  - {fileID: 5607858533975094111}
-  - {fileID: 5607956296966891937}
-  - {fileID: 8472264331678606079}
-  - {fileID: 5607183053348383177}
-  - {fileID: 8472028727003086547}
-  - {fileID: 8472303261740452041}
-  - {fileID: 8471901882416478735}
-  - {fileID: 8471404735439602715}
-  - {fileID: 5608715241117057819}
-  - {fileID: 8471489802658765621}
-  HelmetRenderer: {fileID: 8471860763866945697}
-  GlassesRenderer: {fileID: 8472808873856506573}
-  MaskRenderer: {fileID: 8471365418518487989}
-  EarringsRenderer: {fileID: 8471940408524982645}
-  PrimaryMeleeWeaponRenderer: {fileID: 5607848403867262991}
-  SecondaryMeleeWeaponRenderer: {fileID: 8471342850138396507}
-  ArmorRenderers:
-  - {fileID: 8472231582916305871}
-  - {fileID: 5607048218281432219}
-  - {fileID: 8472688005742742325}
-  - {fileID: 5607156769402477209}
-  - {fileID: 8471503786904682125}
-  - {fileID: 5607243521565782061}
-  - {fileID: 5607974216304478681}
-  - {fileID: 5607968766206053835}
-  - {fileID: 8472798022255616309}
-  - {fileID: 5607000443914779099}
-  - {fileID: 5608734089320928865}
-  - {fileID: 8471478597491024659}
-  - {fileID: 5607882893349499563}
-  - {fileID: 8471946381171638007}
-  - {fileID: 5607324871590554369}
-  - {fileID: 5607319369182906787}
-  - {fileID: 8472769618118363291}
-  - {fileID: 5607152485922735279}
-  - {fileID: 8472134643522234143}
-  - {fileID: 5607056900535930955}
-  - {fileID: 8472020204245821357}
-  - {fileID: 8471434137342057589}
-  - {fileID: 5607991659946717291}
-  - {fileID: 8471907190863392725}
-  - {fileID: 5607340146671383635}
-  - {fileID: 8472784885686127207}
-  CapeRenderer: {fileID: 8472328316067922489}
-  BackRenderer: {fileID: 8472850920899446049}
-  ShieldRenderer: {fileID: 8472103129852209175}
-  BowRenderers:
-  - {fileID: 8472155341926940823}
-  - {fileID: 8471370385294502765}
-  - {fileID: 8472287810677699633}
-  - {fileID: 5607106315325241283}
-  - {fileID: 5607842876660292665}
-  - {fileID: 5607150479883464281}
-  - {fileID: 8471882262122123473}
-  FirearmsRenderers:
-  - {fileID: 8471346746182106443}
-  - {fileID: 8472763608692541481}
-  - {fileID: 8471347888944848791}
-  - {fileID: 8471938723127557581}
-  - {fileID: 8471896025727740699}
-  - {fileID: 8472165838494617477}
-  DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  EyesPaintMaterial: {fileID: 2100000, guid: 76c39f1b79f94a6093d87b9b386ee91c, type: 2}
-  EquipmentPaintMaterial: {fileID: 2100000, guid: 422f5f2ea71549499f154becb259725a, type: 2}
-  Animator: {fileID: 8517041798498909095}
-  WeaponType: 0
-  HideEars: 0
-  FullHair: 0
-  MeleeWeapon: {fileID: 5671375520260372377}
-  Firearm: {fileID: 321705486164676009}
-  LayerManager: {fileID: 8572068869715659893}
-  ShowHelmet: 1
 --- !u!114 &8572222748559923627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6507,17 +6116,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8605919530991272327}
-  - component: {fileID: 8572120787966572745}
-  - component: {fileID: 8572068869715659893}
-  - component: {fileID: 8035544403512100987}
   - component: {fileID: 8605919530991272334}
   - component: {fileID: 8605919530991272333}
   - component: {fileID: 8605919530991272332}
   - component: {fileID: 8605919530991272331}
   - component: {fileID: 8605919530991272330}
+  - component: {fileID: 8605919530991272335}
   - component: {fileID: 8605919530991272329}
   - component: {fileID: 8605919530991272328}
-  - component: {fileID: 8605919530991272335}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6769,9 +6375,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8605904749257937553}
-  - component: {fileID: 321705486164676009}
-  - component: {fileID: 7399786059874695043}
-  - component: {fileID: 5120682172160622929}
   - component: {fileID: 8522476230369730191}
   m_Layer: 0
   m_Name: Firearm
@@ -7418,6 +7021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8606282117611158229}
   - component: {fileID: 8517041798498909095}
+  - component: {fileID: 8606282117611158230}
   m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
@@ -8177,6 +7781,25 @@ Transform:
   - {fileID: 8606230548540049333}
   m_Father: {fileID: 8605919530991272327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8606282117611158230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603893279946378631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84af3e072e992e74c9fc78894791fd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stayAnimator: {fileID: 9100000, guid: fd9280d024849014e9deb32fc93a8413, type: 2}
+  _walkAnimator: {fileID: 9100000, guid: 5fe22c091f993984580c5d4d0a413c48, type: 2}
+  _runAnimator: {fileID: 9100000, guid: 934e6a51545ce804280a58130a42a243, type: 2}
+  _attackAnimator: {fileID: 9100000, guid: 23f966b3fe1c8704fa635f9504f1b992, type: 2}
+  _jumpAnimator: {fileID: 9100000, guid: 6a3e5baaf08bf6e42962503dc2e97685, type: 2}
+  _deathAnimator: {fileID: 9100000, guid: 5da7251df2e36894b941b046c82b58ac, type: 2}
+  _winnerAnimator: {fileID: 9100000, guid: 801315a4d65e7c44483d20115c1fdab6, type: 2}
 --- !u!4 &8606296873540784771
 Transform:
   m_ObjectHideFlags: 0

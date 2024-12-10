@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Player _player;
-    private GetInputManager _playerInput;
+    private PlayerInput _playerInput;
     private DistanceToEnemy _distanceEnemy;
     void Start()
     {
         _player = GetComponent<Player>();
-        _playerInput = GetInputManager.Instance;
+        _playerInput = FindFirstObjectByType<PlayerInput>();
         _distanceEnemy = GetComponent<DistanceToEnemy>();
     }
 

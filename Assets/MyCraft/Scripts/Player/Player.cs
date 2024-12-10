@@ -5,7 +5,6 @@ public class Player : MonoBehaviour
     private BasePlayerWalk _playerWalk;
     private BasePlayerJump _playerJump;
     private BasePlayerAttack _playerAttack;
-
     private void Start()
     {
         // 必要なコンポーネントを取得

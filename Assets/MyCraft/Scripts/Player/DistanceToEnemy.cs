@@ -47,8 +47,7 @@ public class DistanceToEnemy : MonoBehaviour
         // ‹ß‚¢“G‚ªŒ©‚Â‚©‚Á‚½ê‡‚Ìˆ—
         if (_nearestEnemy != null)
         {
-            Debug.Log($"‹ß‚¢“G: {_nearestEnemy.name} ‚Æ‚Ì‹——£: {minDistance}");
-            // —á: “G‚ÉŒü‚©‚Á‚Ä–îˆó‚ğŒü‚¯‚éˆ—‚È‚Ç
+           
             Debug.DrawLine(this.transform.position, _nearestEnemy.position, Color.red);
             CanAttack = true;
 
