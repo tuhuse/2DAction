@@ -14,11 +14,8 @@ public class PlayerController : MonoBehaviour
         _distanceEnemy = GetComponent<DistanceToEnemy>();
     }
 
-    void Update()
-    {
-        UpdateInput();
-    }
-    private void UpdateInput()
+    
+    public void UpdateInput()
     {
         if (_playerInput.CanLeftMove)
         {

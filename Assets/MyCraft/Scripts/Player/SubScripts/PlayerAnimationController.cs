@@ -22,11 +22,7 @@ public class PlayerAnimationController :MonoBehaviour
         _animationInput = FindFirstObjectByType<AnimationInput>();
     }
 
-    private void Update()
-    {
-        UpdateAnimation();
-    }
-    private void UpdateAnimation()
+    public void UpdateAnimation()
     {
         if (_animationInput.IsWalkAnimation)
         {
