@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class BasePlayerAttack : MonoBehaviour
 {
+    [SerializeField] protected BoxCollider2D _playerBoxCollider = default;
     [SerializeField] protected float _attackPower = 10f;
     [SerializeField] protected float _attackCoolDown = 1f;
 
@@ -14,8 +15,6 @@ public abstract class BasePlayerAttack : MonoBehaviour
         if (!_isAttackCoolDown)
         {
             Attack();
-
-
         }
     }
     public abstract void Attack();

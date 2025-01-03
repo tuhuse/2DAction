@@ -5,9 +5,6 @@ using UnityEngine;
 public class SordAttack : BasePlayerAttack
 {
     
-   [SerializeField] private BoxCollider2D _playerBoxCollider = default;
-
-
     private void Start()
     {
            

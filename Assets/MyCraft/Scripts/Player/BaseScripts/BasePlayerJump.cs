@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class BasePlayerJump : MonoBehaviour
 {
-    public float JumpPower { get; set; } = 5f;
-    public bool IsJump { get; set; } = false;
+    protected float JumpPower { get; set; } = 5f;
+    protected bool IsJump { get; set; } = false;
 
 
   
