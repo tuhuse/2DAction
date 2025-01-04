@@ -9,7 +9,7 @@ public class SoldierSensePlayer :BaseSensePlayer
         float DistanceToPlayer = Mathf.Abs(_player.position.x - this.transform.position.x);
 
         // プレイヤーが一定距離以上離れている場合のみ移動
-        if (DistanceToPlayer > MAX_DISTANCE_PLAYER)
+        if (DistanceToPlayer < MAX_DISTANCE_PLAYER)
         {
             // プレイヤーの方向を判定
             if (_player.position.x > this.transform.position.x)
@@ -22,6 +22,11 @@ public class SoldierSensePlayer :BaseSensePlayer
                 IsRightFindPlayer = false;
                 IsLeftFindPlayer = true;
             }
+        }
+        else
+        {
+            IsRightFindPlayer = false;
+            IsLeftFindPlayer = false;
         }
 
 

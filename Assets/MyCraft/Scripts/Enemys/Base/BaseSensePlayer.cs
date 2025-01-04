@@ -8,7 +8,7 @@ public abstract class BaseSensePlayer : MonoBehaviour
     protected const float MAX_DISTANCE_PLAYER=10f;
     
     public bool IsRightFindPlayer { get; set; } = false;
-    public bool IsLeftFindPlayer { get; set; } = true;
+    public bool IsLeftFindPlayer { get; set; } = false;
 
     public abstract void FindPlayer();
 }
