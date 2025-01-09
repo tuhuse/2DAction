@@ -4,27 +4,29 @@ using UnityEngine;
 public class PlayerStatus
 {
     // Šî–{ƒXƒe[ƒ^ƒX
-    public int _baseHealth = 100;       // Šî‘b‘Ì—Í
-    public int _baseDefense = 10;      // Šî‘b–hŒä—Í
+    private const int BASE_HEALTH = 100;       // Šî‘b‘Ì—Í
+    private const int BASE_DIFENSE = 10;      // Šî‘b–hŒä—Í
 
+    private BaseBodyEquipment _baseBodyEquipment;
     // ‘•”õ‚É‚æ‚é•â³’l
-    public int armorDefense = 0;      // ‘•”õ–hŒä—Í
+    public int ArmorDefense = 0;      // ‘•”õ–hŒä—Í
     public float damageMultiplier = 1f; // ƒ_ƒ[ƒW”{—¦i—á: Œy‘•‚È‚ç1.2”{j
 
     // Œ»İ‚Ì‘Ì—Í
     private int currentHealth;
 
+
     // ‰Šú‰»ˆ—
     public void Initialize()
     {
-        currentHealth = _baseHealth;
+        currentHealth = BASE_HEALTH;
     }
 
     // ƒ_ƒ[ƒWŒvZ
     public void TakeDamage(int damage)
     {
         // ÀÛ‚Ì–hŒä—Í‚ğŒvZ
-        int totalDefense = _baseDefense + armorDefense;
+        int totalDefense = BASE_DIFENSE + ArmorDefense;
         float effectiveDamage = Mathf.Max(0, damage - totalDefense); // –hŒä—Í‚ğŒ¸Z
         effectiveDamage *= damageMultiplier; // ƒ_ƒ[ƒW”{—¦‚ğ“K—p
 
