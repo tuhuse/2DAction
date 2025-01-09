@@ -1,52 +1,73 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
-    private BasePlayerWalk _playerWalk;
-    private BasePlayerJump _playerJump;
-    private BasePlayerAttack _playerAttack;
+    private BaseBodyEquipment _baseBodyEquipment;
+    private BaseWeapon _weapon;
+    private BaseDistanceEnemy _distanceEnemy;
+    public int BodyDeffence => _baseBodyEquipment.Deffence;
     private void Start()
     {
         // 必要なコンポーネントを取得
-        _playerWalk = GetComponent<NomalWalk>();
-        _playerJump = GetComponent<NomalJump>();
-        _playerAttack = GetComponent<SordAttack>();
-
+        _baseBodyEquipment = GetComponent<NomalBodyEquipment>();
+        _weapon = GetComponent<SordWeapon>();
+        _distanceEnemy = GetComponent<BaseDistanceEnemy>();
         // コンポーネントが存在しない場合の警告
-        if (_playerWalk == null) Debug.LogWarning("BasePlayerWalk component is missing!");
-        if (_playerJump == null) Debug.LogWarning("BasePlayerJump component is missing!");
-        if (_playerAttack == null) Debug.LogWarning("BasePlayerAttack component is missing!");
+        if (_baseBodyEquipment== null) Debug.LogWarning("BasePlayerWalk component is missing!");
+        if (_weapon == null) Debug.LogWarning("BasePlayerAttack component is missing!");
     }
 
     public void RightWalk()
     {
-        if (_playerWalk != null)
+        if (_baseBodyEquipment != null)
         {
-            _playerWalk.RightWalk();
+            _baseBodyEquipment.RightWalk();
+        }
+        else
+        {
+            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
         }
     }
 
     public void LeftWalk()
     {
-        if (_playerWalk != null)
+        if (_baseBodyEquipment != null)
         {
-            _playerWalk.LeftWalk();
+            _baseBodyEquipment.LeftWalk();
+        }
+        else
+        {
+            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
         }
     }
 
     public void Jump()
     {
-        if (_playerJump != null)
+        if (_baseBodyEquipment != null)
         {
-            _playerJump.Jump();
+            _baseBodyEquipment.Jump();
+        }
+        else
+        {
+            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
         }
     }
 
     public void Attack()
     {
-        if (_playerAttack != null)
+        if (_distanceEnemy.CanAttack)
         {
-            _playerAttack.TryAttack();
+            if (_weapon != null)
+            {
+                _weapon.TryAttack();
+            }
+            else
+            {
+                _weapon = gameObject.AddComponent<SordWeapon>();
+            }
+            
         }
+        
     }
 }

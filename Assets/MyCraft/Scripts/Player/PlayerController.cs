@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     private Player _player;
     private PlayerInput _playerInput;
-    private DistanceToEnemy _distanceEnemy;
+   
     void Start()
     {
         _player = GetComponent<Player>();
         _playerInput = FindFirstObjectByType<PlayerInput>();
-        _distanceEnemy = GetComponent<DistanceToEnemy>();
+       
     }
 
     
@@ -35,10 +35,7 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-        if (_distanceEnemy.CanAttack)
-        {
-            _player.Attack();
-        }
+        
     }
     
 

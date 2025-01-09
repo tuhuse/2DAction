@@ -1,22 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// ジャンプをする
-/// </summary>
-public class NomalJump : BasePlayerJump
+
+public class NomalBodyEquipment : BaseBodyEquipment
 {
-    
-    private Rigidbody2D _playerRigidbody = default;
-    private BoxCollider2D _playerBoxCollider= default;
+  
     private const int MAX_JUMP_COUNT = 2;
     private int _currentJumpCount = 0;
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _playerBoxCollider = GetComponent<BoxCollider2D>();
-      
+        Deffence = 10;
+
     }
-   
-    
+
+
     /// <summary>
     /// 通常装備のジャンプ
     /// </summary>
@@ -31,9 +30,17 @@ public class NomalJump : BasePlayerJump
                 IsJump = true;
             }
         }
-    
+
+    }
+    public override void RightWalk()
+    {
+        _playerRigidbody.velocity = new Vector2(WalkSpeed, _playerRigidbody.velocity.y);
     }
 
+    public override void LeftWalk()
+    {
+        _playerRigidbody.velocity = new Vector2(-WalkSpeed, _playerRigidbody.velocity.y);
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -42,5 +49,6 @@ public class NomalJump : BasePlayerJump
             _currentJumpCount = 0;
         }
     }
-  
+
+   
 }

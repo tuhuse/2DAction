@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SordAttack : BasePlayerAttack
+public class SordWeapon : BaseWeapon
 {
     
     private void Start()

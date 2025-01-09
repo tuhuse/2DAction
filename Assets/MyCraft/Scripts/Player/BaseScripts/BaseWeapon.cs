@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BasePlayerAttack : MonoBehaviour
+public abstract class BaseWeapon : MonoBehaviour
 {
     [SerializeField] protected BoxCollider2D _playerBoxCollider = default;
     [SerializeField] protected float _attackPower = 10f;

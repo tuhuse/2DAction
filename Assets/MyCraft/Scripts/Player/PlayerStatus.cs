@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerStatus
 {
     // Šî–{ƒXƒe[ƒ^ƒX
-    public int baseHealth = 100;       // Šî‘b‘Ì—Í
-    public int baseDefense = 10;      // Šî‘b–hŒä—Í
+    public int _baseHealth = 100;       // Šî‘b‘Ì—Í
+    public int _baseDefense = 10;      // Šî‘b–hŒä—Í
 
     // ‘•”õ‚É‚æ‚é•â³’l
     public int armorDefense = 0;      // ‘•”õ–hŒä—Í
@@ -17,14 +17,14 @@ public class PlayerStatus
     // ‰Šú‰»ˆ—
     public void Initialize()
     {
-        currentHealth = baseHealth;
+        currentHealth = _baseHealth;
     }
 
     // ƒ_ƒ[ƒWŒvZ
     public void TakeDamage(int damage)
     {
         // ÀÛ‚Ì–hŒä—Í‚ğŒvZ
-        int totalDefense = baseDefense + armorDefense;
+        int totalDefense = _baseDefense + armorDefense;
         float effectiveDamage = Mathf.Max(0, damage - totalDefense); // –hŒä—Í‚ğŒ¸Z
         effectiveDamage *= damageMultiplier; // ƒ_ƒ[ƒW”{—¦‚ğ“K—p
 
