@@ -3,21 +3,21 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
-    private BaseBodyEquipment _baseBodyEquipment;
+  
     private BaseWeapon _weapon;
     private BaseDistanceEnemy _distanceEnemy;
-    public int BodyDeffence => _baseBodyEquipment.Deffence;
+    private EquipmentInventory _equipmentInventory;
+    private BaseBodyEquipment _baseBodyEquipment => _equipmentInventory.BaseBodyEquipment;
     private void Start()
     {
-        // 必要なコンポーネントを取得
-        _baseBodyEquipment = GetComponent<NomalBodyEquipment>();
+        _equipmentInventory = EquipmentInventory.Instance;
         _weapon = GetComponent<SordWeapon>();
         _distanceEnemy = GetComponent<BaseDistanceEnemy>();
         // コンポーネントが存在しない場合の警告
         if (_baseBodyEquipment== null) Debug.LogWarning("BasePlayerWalk component is missing!");
         if (_weapon == null) Debug.LogWarning("BasePlayerAttack component is missing!");
     }
-
+  
     public void RightWalk()
     {
         if (_baseBodyEquipment != null)
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
+            _equipmentInventory.NullEquipment();
         }
     }
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
+            _equipmentInventory.NullEquipment();
         }
     }
 
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _baseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
+            _equipmentInventory.NullEquipment();
         }
     }
 

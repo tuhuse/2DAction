@@ -6,14 +6,21 @@ public abstract class BaseBodyEquipment : MonoBehaviour
 {
     protected Rigidbody2D _playerRigidbody = default;
     protected BoxCollider2D _playerBoxCollider = default;
-    protected float JumpPower { get; set; } = 5f;
+    protected BodyEquipmentData _equeipmentdata;
+    protected GameObject _player;
+    protected float JumpPower =>_equeipmentdata.JumpPower ;
+    protected float WalkSpeed  =>_equeipmentdata.MoveSpeed;
+    public int Deffence => _equeipmentdata.Defense;
     protected bool IsJump { get; set; } = false;
-    public float WalkSpeed { get; set; } = 10f;
 
-    public int Deffence { get; set; }
+    protected abstract void Start();   
     public abstract void RightWalk();
     public abstract void LeftWalk();
 
     public abstract void Jump();
+    public void SetEqueipment()
+    {
+        _equeipmentdata = EquipmentInventory.Instance.BodyEquipment;
+    }
     
 }
