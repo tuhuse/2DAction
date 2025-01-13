@@ -48,9 +48,10 @@ public class NomalBodyEquipment : BaseBodyEquipment
     {
         _playerRigidbody.velocity = new Vector2(-WalkSpeed, _playerRigidbody.velocity.y);
     }
-    protected override void HandleCollisionStay(Collision2D collision)
+
+    private void HandleCollisionStay(Collision2D collision)
     {
-        if ( collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor"))
         {
             IsJump = false;
             _currentJumpCount = 0;

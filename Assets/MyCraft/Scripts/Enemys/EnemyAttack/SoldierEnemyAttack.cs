@@ -6,6 +6,10 @@ using UnityEngine;
 /// </summary>
 public class SoldierEnemyAttack : BaseEnemyAttack
 {
+    private void Start()
+    {
+        AttackPower = 2;
+    }
     public override void EnemyAttack()
     {
         if (!_isAttackCoolDown)

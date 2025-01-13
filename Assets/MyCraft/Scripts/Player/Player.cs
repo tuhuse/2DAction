@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class Player : MonoBehaviour
 {
   
@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private BaseDistanceEnemy _distanceEnemy;
     private EquipmentInventory _equipmentInventory;
     private BaseBodyEquipment _baseBodyEquipment => _equipmentInventory.BaseBodyEquipment;
+    private float _setInitializeEquipmentTime = 0.5f;
     private void Start()
     {
         _equipmentInventory = EquipmentInventory.Instance;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _equipmentInventory.NullEquipment();
+            StartCoroutine(InitializeEquipment());
         }
     }
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _equipmentInventory.NullEquipment();
+            StartCoroutine(InitializeEquipment());
         }
     }
 
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _equipmentInventory.NullEquipment();
+            StartCoroutine(InitializeEquipment());
         }
     }
 
@@ -66,6 +67,15 @@ public class Player : MonoBehaviour
                 _weapon = gameObject.AddComponent<SordWeapon>();
             }
             
+        }
+        
+    }
+    private IEnumerator InitializeEquipment()
+    {
+        yield return new WaitForSeconds(_setInitializeEquipmentTime);
+        if (_baseBodyEquipment == null)
+        {
+            _equipmentInventory.InitializeEquipment();
         }
         
     }

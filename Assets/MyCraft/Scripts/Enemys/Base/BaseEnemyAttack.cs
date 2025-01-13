@@ -7,6 +7,6 @@ public abstract class BaseEnemyAttack : MonoBehaviour
     [SerializeField] protected BoxCollider2D _boxCollider2D;
     protected bool _isAttackCoolDown = false;
     protected float AttackCoolTime { get; set; } = 2f;
-    protected float AttackPower = 5f;
+    public int AttackPower { get; set; }
     public abstract void EnemyAttack();
 }

@@ -4,6 +4,7 @@ public class SoldierEnemy : BaseEnemy
 {
     private void Start()
     {
+       
         // 移動とジャンプの機能を設定
         SetMovement(gameObject.GetComponent<SoldierEnemyMove>());
 

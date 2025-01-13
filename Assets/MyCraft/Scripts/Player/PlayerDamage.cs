@@ -8,7 +8,7 @@ public class PlayerDamage : MonoBehaviour
     PlayerStatus _playerStatus = new PlayerStatus();
     void Start()
     {
-        PlayerCollisionDetector collisionDetector = PlayerCollisionDetector.Instance;
+        PlayerCollisionDetector collisionDetector =GetComponent<PlayerCollisionDetector>();
         if (collisionDetector != null)
         {
             collisionDetector.OnPlayerCollisionEnter += HandleCollisionEnter;
@@ -18,7 +18,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SoldierEnemy"))
         {
-            _playerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemy>().AttackPower);
+            _playerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
         }
            
     }

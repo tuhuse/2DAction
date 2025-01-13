@@ -18,10 +18,10 @@ public abstract class BaseBodyEquipment : MonoBehaviour
     public abstract void LeftWalk();
 
     public abstract void Jump();
-    protected abstract void HandleCollisionStay(Collision2D collision);
+    //protected abstract void HandleCollisionStay(Collision2D collision);
     public void SetEqueipment()
     {
-        _equeipmentdata = EquipmentInventory.Instance.BodyEquipment;
+        _equeipmentdata = EquipmentInventory.Instance.BodyEquipmentData;
     }
     
 }
