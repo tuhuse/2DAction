@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     {
         _equipmentInventory = EquipmentInventory.Instance;
         _weapon = GetComponent<SordWeapon>();
-        _distanceEnemy = GetComponent<BaseDistanceEnemy>();
+        _distanceEnemy = GetComponent<SordDistanceEnemy>();
         // コンポーネントが存在しない場合の警告
         if (_baseBodyEquipment== null) Debug.LogWarning("BasePlayerWalk component is missing!");
         if (_weapon == null) Debug.LogWarning("BasePlayerAttack component is missing!");
@@ -22,7 +22,16 @@ public class Player : MonoBehaviour
     {
         if (_baseBodyEquipment != null)
         {
-            _baseBodyEquipment.RightWalk();
+            if (!_equipmentInventory.IsChangeEquipment)
+            {
+                _baseBodyEquipment.RightWalk();
+                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                _baseBodyEquipment.StopMove();
+            }
+          
         }
         else
         {
@@ -34,7 +43,15 @@ public class Player : MonoBehaviour
     {
         if (_baseBodyEquipment != null)
         {
-            _baseBodyEquipment.LeftWalk();
+            if (!_equipmentInventory.IsChangeEquipment)
+            {
+                _baseBodyEquipment.LeftWalk();
+                this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                _baseBodyEquipment.StopMove();
+            }
         }
         else
         {
@@ -53,7 +70,10 @@ public class Player : MonoBehaviour
             StartCoroutine(InitializeEquipment());
         }
     }
-
+    public void MoveStop()
+    {
+       _baseBodyEquipment.GetKeyUpStopMove();
+    }
     public void Attack()
     {
         if (_distanceEnemy.CanAttack)

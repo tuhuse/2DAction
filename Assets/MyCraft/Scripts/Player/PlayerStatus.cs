@@ -4,12 +4,12 @@ using UnityEngine;
 public class PlayerStatus
 {
     // 基本ステータス
-    private const int BASE_HEALTH = 100;       // 基礎体力
-    private const int BASE_DEFENSE = 10;       // 基礎防御力
+    public const int BASE_HEALTH = 100;       // 基礎体力
+    private const int BASE_DEFENSE = 5;       // 基礎防御力
 
     // 現在装備している防具
     private BaseBodyEquipment _currentBodyEquipment;
-
+    private PlayerHealthBar _playerHealthBar;
 
     //public float DamageMultiplier => _currentBodyEquipment != null ? _currentBodyEquipment.DamageMultiplier : 1f;
 
@@ -27,12 +27,21 @@ public class PlayerStatus
         } 
     }
     // 初期化処理
-    public void Initialize(BaseBodyEquipment initialEquipment)
+    public void InitializeBodyEquipment(BaseBodyEquipment initialEquipment)
     {
         currentHealth = BASE_HEALTH;
         _currentBodyEquipment = initialEquipment;
     }
+    public void InitializeHealthBar(PlayerHealthBar healthBar)
+    {
+        currentHealth = BASE_HEALTH;
+        _playerHealthBar = healthBar;
 
+        if (healthBar != null)
+        {
+            healthBar.Initialize(this); // HPバーを初期化
+        }
+    }
     // 装備を変更するメソッド
     public void ChangeEquipment(BaseBodyEquipment newEquipment)
     {
@@ -47,10 +56,18 @@ public class PlayerStatus
         int totalDefense = BASE_DEFENSE + ArmorDefense;
         float effectiveDamage = Mathf.Max(0, damage - totalDefense); // 防御力を減算
         //effectiveDamage *= DamageMultiplier; // ダメージ倍率を適用
-
+        if (effectiveDamage == 0)
+        {
+            effectiveDamage = 1;
+        }
         // 体力を減少
         currentHealth -= Mathf.RoundToInt(effectiveDamage);
         Debug.Log($"ダメージ受けた: {Mathf.RoundToInt(effectiveDamage)} 現在HP: {currentHealth}");
+        GetCurrentHealth();
+        if (_playerHealthBar != null)
+        {
+            _playerHealthBar.UpdateHealthBar(); // HPバーを更新
+        }
 
         // 体力が0以下なら死亡処理
         if (currentHealth <= 0)
@@ -62,8 +79,7 @@ public class PlayerStatus
     // 死亡処理
     private void Die()
     {
-        Debug.Log("プレイヤー死亡");
-        // ゲームオーバー処理やリスポーン処理をここに追加
+        SceneGameManager.Instance.OnGameOver();
     }
 
     // 現在の体力取得

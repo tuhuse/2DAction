@@ -8,7 +8,7 @@ public class SoldierEnemyAttack : BaseEnemyAttack
 {
     private void Start()
     {
-        AttackPower = 2;
+        AttackPower = 15;
     }
     public override void EnemyAttack()
     {
@@ -27,11 +27,5 @@ public class SoldierEnemyAttack : BaseEnemyAttack
         _isAttackCoolDown = false;
        
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-
-        }
-    }
+   
 }

@@ -31,11 +31,20 @@ public class PlayerController : MonoBehaviour
         {
             _player.Jump();
         }
+
+        if (_playerInput.CanMoveStop)
+        {
+            _player.MoveStop();
+        }
         if (_playerInput.CanUseSkill)
         {
 
         }
         
+    }
+    public void UpdateAttack()
+    {
+        _player.Attack();
     }
     
 

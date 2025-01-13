@@ -6,19 +6,25 @@ public class SordDistanceEnemy : BaseDistanceEnemy
 {
    
 
-    // Start is called before the first frame update
     void Start()
     {
+        // 対象タグを配列で管理
+        string[] targetTags = { "SoldierEnemy"/*, "Boss", "Minion"*/ };
+        List<Transform> enemiesList = new List<Transform>();
 
-        // シーン内のすべての敵を探し、Transformを取得する
-        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
-        _enemies = new Transform[enemyObjects.Length];
-
-        for (int i = 0; i < enemyObjects.Length; i++)
+        foreach (string tag in targetTags)
         {
-            _enemies[i] = enemyObjects[i].transform;
+            GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag(tag);
+
+            foreach (GameObject enemy in enemyObjects)
+            {
+                enemiesList.Add(enemy.transform);
+            }
         }
+
+        _enemies = enemiesList.ToArray();
     }
+
     protected override void FindNearestEnemy()
     {
         float minDistance = DETECTION_RADIUS;
@@ -26,6 +32,12 @@ public class SordDistanceEnemy : BaseDistanceEnemy
 
         foreach (Transform enemy in _enemies)
         {
+            // enemy が null の場合はスキップ
+            if (enemy == null)
+            {
+                continue;
+            }
+
             float distance = Vector2.Distance(this.transform.position, enemy.position);
 
             if (distance < minDistance)
@@ -38,10 +50,8 @@ public class SordDistanceEnemy : BaseDistanceEnemy
         // 近い敵が見つかった場合の処理
         if (_nearestEnemy != null)
         {
-
             Debug.DrawLine(this.transform.position, _nearestEnemy.position, Color.red);
             CanAttack = true;
-
         }
         else
         {

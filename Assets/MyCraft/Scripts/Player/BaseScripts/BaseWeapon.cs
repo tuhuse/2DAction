@@ -4,12 +4,11 @@ using UnityEngine;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] protected BoxCollider2D _playerBoxCollider = default;
-    [SerializeField] protected float _attackPower = 10f;
+
+    [SerializeField] protected GameObject _weapon = default;
     [SerializeField] protected float _attackCoolDown = 1f;
-
     protected bool _isAttackCoolDown = false;
-
+    public int AttackPower { get; set; }
     public void TryAttack()
     {
         if (!_isAttackCoolDown)

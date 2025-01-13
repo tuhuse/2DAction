@@ -7,20 +7,20 @@ public class SordWeapon : BaseWeapon
     
     private void Start()
     {
-           
-        _playerBoxCollider.enabled = false;
+        AttackPower = 15;
 
     }
     public override void Attack()
     {
-        _playerBoxCollider.enabled = true;
+       
         StartCoroutine(AttackCoolDown());
     }
     protected IEnumerator AttackCoolDown()
     {
+        _weapon.SetActive(true);
         _isAttackCoolDown = true;
         yield return new WaitForSeconds(_attackCoolDown);
-        _playerBoxCollider.enabled = false;
+        _weapon.SetActive(false);
         yield return new WaitForSeconds(_attackCoolDown);
         _isAttackCoolDown = false;
     }

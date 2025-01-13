@@ -6,6 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/MyCraft/Scenes/TitleScene.unity
+    guid: 6a9709ca60760bb42bfa55410297605e
+  - enabled: 1
+    path: Assets/MyCraft/Scenes/GameOver.unity
+    guid: 2b3152f6766f19b47822e1112f5dafb7
+  - enabled: 1
+    path: Assets/MyCraft/Scenes/GameClear.unity
+    guid: c04eaf0644c90c04db58555dc285f359
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

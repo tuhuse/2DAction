@@ -19,6 +19,13 @@ public abstract class BaseBodyEquipment : MonoBehaviour
 
     public abstract void Jump();
     //protected abstract void HandleCollisionStay(Collision2D collision);
+    public void StopMove()
+    {
+        _playerRigidbody.velocity = new Vector2(0, 0);
+    }public void GetKeyUpStopMove()
+    {
+        _playerRigidbody.velocity = new Vector2(0, _playerRigidbody.velocity.y);
+    }
     public void SetEqueipment()
     {
         _equeipmentdata = EquipmentInventory.Instance.BodyEquipmentData;

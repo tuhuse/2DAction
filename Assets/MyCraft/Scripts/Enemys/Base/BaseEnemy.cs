@@ -7,6 +7,7 @@ public abstract class BaseEnemy : MonoBehaviour
     protected BaseEnemyAttack _attack;
     protected BaseSensePlayer _sense;
     
+    public int Deffence { get;set; }
     public void SetMovement(BaseEnemyMove move) => _move = move;
     public void SetJump(BaseEnemyJump jmp) => _jump = jmp;
     public void SetAttack(BaseEnemyAttack atk) => _attack = atk;
