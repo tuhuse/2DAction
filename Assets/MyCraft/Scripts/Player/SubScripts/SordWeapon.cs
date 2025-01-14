@@ -7,7 +7,7 @@ public class SordWeapon : BaseWeapon
     
     private void Start()
     {
-        AttackPower = 15;
+        AttackPower = 40;
 
     }
     public override void Attack()

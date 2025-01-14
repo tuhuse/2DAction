@@ -15,5 +15,5 @@ MonoBehaviour:
   _equipmentName: "\u5F37\u3044\u88C5\u5099"
   _defense: 20
   _moveSpeed: 20
-  _jumpPower: 10
+  _jumpPower: 15
   _equipmentType: 1

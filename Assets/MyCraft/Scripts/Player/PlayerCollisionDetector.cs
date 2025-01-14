@@ -4,10 +4,10 @@ public class PlayerCollisionDetector : MonoBehaviour
 {
    
     public delegate void CollisionStayEventHandler(Collision2D collision);
-    //public delegate void TriggerEventHandler(Collider2D collision);
+    public delegate void TriggerEventHandler(Collider2D collision);
     public delegate void CollisionEnterEventHandler(Collision2D collision);
     public event CollisionStayEventHandler OnPlayerCollisionStay;
-    //public event TriggerEventHandler OnPlayerTriggerEnter;
+    public event TriggerEventHandler OnPlayerTriggerEnter;
     public event CollisionEnterEventHandler OnPlayerCollisionEnter;
   
 
@@ -21,9 +21,9 @@ public class PlayerCollisionDetector : MonoBehaviour
     {
         OnPlayerCollisionEnter.Invoke(collision);   
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    OnPlayerTriggerEnter.Invoke(collision);
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnPlayerTriggerEnter.Invoke(collision);
+    }
 
 }

@@ -11,7 +11,7 @@ public class NomalBodyEquipment : BaseBodyEquipment
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerRigidbody =_player.GetComponent<Rigidbody2D>();
-        _playerBoxCollider = _player.GetComponent<BoxCollider2D>();
+        _playerCupsuleCollider = _player.GetComponent<BoxCollider2D>();
         // プレイヤーの衝突検知スクリプトを取得
         PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();
         if (collisionDetector != null)
@@ -37,6 +37,7 @@ public class NomalBodyEquipment : BaseBodyEquipment
                 IsJump = true;
             }
         }
+       
 
     }
     public override void RightWalk()

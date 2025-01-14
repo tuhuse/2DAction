@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseBodyEquipment : MonoBehaviour
 {
     protected Rigidbody2D _playerRigidbody = default;
-    protected BoxCollider2D _playerBoxCollider = default;
+    protected BoxCollider2D _playerCupsuleCollider = default;
     protected BodyEquipmentData _equeipmentdata;
     protected GameObject _player;
     protected float JumpPower =>_equeipmentdata.JumpPower ;

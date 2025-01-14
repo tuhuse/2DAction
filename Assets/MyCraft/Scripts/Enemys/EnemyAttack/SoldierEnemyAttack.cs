@@ -8,24 +8,12 @@ public class SoldierEnemyAttack : BaseEnemyAttack
 {
     private void Start()
     {
-        AttackPower = 15;
+        AttackPower = 10;
     }
     public override void EnemyAttack()
     {
-        if (!_isAttackCoolDown)
-        {
-            StartCoroutine(AttackCoolDown());
-        }
+        
     }
-    protected IEnumerator AttackCoolDown()
-    {
-        _boxCollider2D.enabled = true;
-        _isAttackCoolDown = true;
-        yield return new WaitForSeconds(AttackCoolTime);
-        _boxCollider2D.enabled = false;
-        yield return new WaitForSeconds(AttackCoolTime);
-        _isAttackCoolDown = false;
-       
-    }
+    
    
 }

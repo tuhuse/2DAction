@@ -11,7 +11,7 @@ public class StrongBodyEquipment : BaseBodyEquipment
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerRigidbody = _player.GetComponent<Rigidbody2D>();
-        _playerBoxCollider = _player.GetComponent<BoxCollider2D>();
+        _playerCupsuleCollider = _player.GetComponent<BoxCollider2D>();
         _playerRigidbody.velocity = new Vector2(0, 0);
         // プレイヤーの衝突検知スクリプトを取得
         PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();

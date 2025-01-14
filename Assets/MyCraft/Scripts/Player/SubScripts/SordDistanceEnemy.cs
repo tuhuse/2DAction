@@ -9,7 +9,7 @@ public class SordDistanceEnemy : BaseDistanceEnemy
     void Start()
     {
         // ‘ÎÛƒ^ƒO‚ğ”z—ñ‚ÅŠÇ—
-        string[] targetTags = { "SoldierEnemy"/*, "Boss", "Minion"*/ };
+        string[] targetTags = { "SoldierEnemy","StandEnemy"/*, "Boss", "Minion"*/ };
         List<Transform> enemiesList = new List<Transform>();
 
         foreach (string tag in targetTags)
