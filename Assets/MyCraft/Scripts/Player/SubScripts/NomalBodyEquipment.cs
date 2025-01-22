@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class NomalBodyEquipment : BaseBodyEquipment
 {
-  
+
     private const int MAX_JUMP_COUNT = 2;
     private int _currentJumpCount = 0;
-   protected override void  Start()
+    protected override void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _playerRigidbody =_player.GetComponent<Rigidbody2D>();
+        _playerRigidbody = _player.GetComponent<Rigidbody2D>();
         _playerCupsuleCollider = _player.GetComponent<BoxCollider2D>();
         // プレイヤーの衝突検知スクリプトを取得
         PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();
         if (collisionDetector != null)
         {
             collisionDetector.OnPlayerCollisionStay += HandleCollisionStay;
+            collisionDetector.OnPlayerCollisionExit += HandleCollisionExit;
         }
 
         SetEqueipment();
@@ -37,7 +38,7 @@ public class NomalBodyEquipment : BaseBodyEquipment
                 IsJump = true;
             }
         }
-       
+
 
     }
     public override void RightWalk()
@@ -47,7 +48,9 @@ public class NomalBodyEquipment : BaseBodyEquipment
 
     public override void LeftWalk()
     {
+
         _playerRigidbody.velocity = new Vector2(-WalkSpeed, _playerRigidbody.velocity.y);
+
     }
 
     private void HandleCollisionStay(Collision2D collision)
@@ -56,8 +59,15 @@ public class NomalBodyEquipment : BaseBodyEquipment
         {
             IsJump = false;
             _currentJumpCount = 0;
+            _playerRigidbody.gravityScale = _equeipmentdata.InitializeGravityScale;
+        }
+    }
+    private void HandleCollisionExit(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            _playerRigidbody.gravityScale = _equeipmentdata.GravityScale;
         }
     }
 
-    
 }

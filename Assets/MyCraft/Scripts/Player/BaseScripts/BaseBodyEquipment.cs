@@ -11,6 +11,7 @@ public abstract class BaseBodyEquipment : MonoBehaviour
     protected float JumpPower =>_equeipmentdata.JumpPower ;
     protected float WalkSpeed  =>_equeipmentdata.MoveSpeed;
     public int Deffence => _equeipmentdata.Defense;
+    
     protected bool IsJump { get; set; } = false;
 
     protected abstract void Start();   
@@ -25,6 +26,7 @@ public abstract class BaseBodyEquipment : MonoBehaviour
     }public void GetKeyUpStopMove()
     {
         _playerRigidbody.velocity = new Vector2(0, _playerRigidbody.velocity.y);
+        
     }
     public void SetEqueipment()
     {

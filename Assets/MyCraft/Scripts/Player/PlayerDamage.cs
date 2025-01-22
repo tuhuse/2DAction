@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour
 {
     private GameObject _standEnemy;
-    
+    private const int THORN_LAYER_NUBER = 7;
+    private int _thornDamage = 10;
     void Start()
     {
         _standEnemy = GameObject.FindGameObjectWithTag("StandEnemy");
@@ -33,10 +34,10 @@ public class PlayerDamage : MonoBehaviour
             // ダメージを受けた処理
             EquipmentInventory.Instance._playerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
         }
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == THORN_LAYER_NUBER)
         {
             // ダメージを受けた処理
-            EquipmentInventory.Instance._playerStatus.TakeDamage(10);
+            EquipmentInventory.Instance._playerStatus.TakeDamage(_thornDamage);
         }
         if (collision.gameObject.CompareTag("ClearFlag"))
         {

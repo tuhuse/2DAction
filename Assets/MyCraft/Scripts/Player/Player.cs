@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     {
         if (_baseBodyEquipment != null)
         {
+           
             if (!_equipmentInventory.IsChangeEquipment)
             {
                 _baseBodyEquipment.RightWalk();
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            StartCoroutine(InitializeEquipment());
+            _equipmentInventory.InitializeEquipment();
         }
     }
 
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
     {
         if (_baseBodyEquipment != null)
         {
+           
             if (!_equipmentInventory.IsChangeEquipment)
             {
                 _baseBodyEquipment.LeftWalk();
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            StartCoroutine(InitializeEquipment());
+            _equipmentInventory.InitializeEquipment(); 
         }
     }
 
@@ -67,12 +69,12 @@ public class Player : MonoBehaviour
         }
         else
         {
-            StartCoroutine(InitializeEquipment());
+            _equipmentInventory.InitializeEquipment();
         }
     }
     public void MoveStop()
     {
-       _baseBodyEquipment.GetKeyUpStopMove();
+        _baseBodyEquipment.GetKeyUpStopMove();
     }
     public void Attack()
     {
@@ -90,13 +92,13 @@ public class Player : MonoBehaviour
         }
         
     }
-    private IEnumerator InitializeEquipment()
-    {
-        yield return new WaitForSeconds(_setInitializeEquipmentTime);
-        if (_baseBodyEquipment == null)
-        {
-            _equipmentInventory.InitializeEquipment();
-        }
+    //private IEnumerator InitializeEquipment()
+    //{
+    //    yield return new WaitForSeconds(_setInitializeEquipmentTime);
+    //    if (_baseBodyEquipment == null)
+    //    {
+    //        _equipmentInventory.InitializeEquipment();
+    //    }
         
-    }
+    //}
 }

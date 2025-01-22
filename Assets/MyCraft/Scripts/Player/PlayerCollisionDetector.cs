@@ -6,9 +6,11 @@ public class PlayerCollisionDetector : MonoBehaviour
     public delegate void CollisionStayEventHandler(Collision2D collision);
     public delegate void TriggerEventHandler(Collider2D collision);
     public delegate void CollisionEnterEventHandler(Collision2D collision);
+    public delegate void CollisionExitEventHandler(Collision2D collider2D);
     public event CollisionStayEventHandler OnPlayerCollisionStay;
     public event TriggerEventHandler OnPlayerTriggerEnter;
     public event CollisionEnterEventHandler OnPlayerCollisionEnter;
+    public event CollisionExitEventHandler OnPlayerCollisionExit;
   
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -26,4 +28,8 @@ public class PlayerCollisionDetector : MonoBehaviour
         OnPlayerTriggerEnter.Invoke(collision);
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        OnPlayerCollisionExit.Invoke(collision);
+    }
 }

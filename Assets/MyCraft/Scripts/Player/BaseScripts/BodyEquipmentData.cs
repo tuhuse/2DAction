@@ -7,16 +7,19 @@ public class BodyEquipmentData : ScriptableObject
     [SerializeField] private int _defense=10;
     [SerializeField] private float _moveSpeed=15f;
     [SerializeField] private float _jumpPower=5f;
+    [SerializeField] private int _gravityScale;
     public enum EquipmentType
     {
         Nomal,
         Strong,
-        •‚—V,
+        hobber,
     }
    [SerializeField] private EquipmentType _equipmentType;
     public string EquipmentName => _equipmentName;
     public int Defense => _defense;
     public float MoveSpeed => _moveSpeed;
     public float JumpPower=> _jumpPower;
+    public int GravityScale => _gravityScale;
+    public int InitializeGravityScale => 1;
     public EquipmentType Equipment => _equipmentType;
 }

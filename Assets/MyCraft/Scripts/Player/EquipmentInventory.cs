@@ -7,12 +7,15 @@ using UnityEngine;
 public class EquipmentInventory : MonoBehaviour
 {
     [SerializeField] private BodyEquipmentData _equipmentData;
-    
+    [SerializeField] private WeaponEqupmentData _weaponData;
+    private const float WAIT_TIME= 0.01f;
     public PlayerStatus _playerStatus = new PlayerStatus();
 
     public static EquipmentInventory Instance { get; private set; }
     public BodyEquipmentData BodyEquipmentData { get; private set; }
+    public WeaponEqupmentData WeaponEquipmentData { get; private set; }
     public BaseBodyEquipment BaseBodyEquipment { get; private set; }
+    public BaseWeapon EquipWeapon { get; private set; }
     public bool IsChangeEquipment { get; private set; }
     private void Awake()
     {
@@ -39,7 +42,7 @@ public class EquipmentInventory : MonoBehaviour
     /// </summary>
     public void ChangeBodyEquiment(BodyEquipmentData bodyEquipmentData)
     {
-        StartCoroutine(ChangeEquipment());
+        StartCoroutine(ChangeBodyEquipment());
         BodyEquipmentData = bodyEquipmentData; 
         
     }
@@ -67,22 +70,37 @@ public class EquipmentInventory : MonoBehaviour
                 Destroy(BaseBodyEquipment);
                 BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
                 _playerStatus.ChangeEquipment(BaseBodyEquipment);
-                Debug.Log("kutabare");
+               
                 break;
             case BodyEquipmentData.EquipmentType.Strong:
                 Destroy(BaseBodyEquipment);
                 BaseBodyEquipment = gameObject.AddComponent<StrongBodyEquipment>();
                 _playerStatus.ChangeEquipment(BaseBodyEquipment);
-                Debug.Log("iei");
+                
                 break;
-            case BodyEquipmentData.EquipmentType.•‚—V:
+            case BodyEquipmentData.EquipmentType.hobber:
+                break;
+        }
+    }private void WeaponEquimentType()
+    {
+        switch (WeaponEquipmentData.Weapon)
+        {
+            case WeaponEqupmentData.WeaponType.MeleeWeapon:
+            
+               
+                break;
+            case WeaponEqupmentData.WeaponType.RangeWeapon:
+             
+                
+                break;
+            case WeaponEqupmentData.WeaponType.SummonWeapon:
                 break;
         }
     }
-    private IEnumerator ChangeEquipment()
+    private IEnumerator ChangeBodyEquipment()
     {
         IsChangeEquipment = true;
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(WAIT_TIME);
         EquimentType();
         IsChangeEquipment = false;
         
