@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// •à•º
+/// </summary>
 public class SoldierSensePlayer :BaseSensePlayer
 {
     public override void FindPlayer()
@@ -22,6 +24,7 @@ public class SoldierSensePlayer :BaseSensePlayer
                 IsRightFindPlayer = false;
                 IsLeftFindPlayer = true;
             }
+            IsAttack = true;
         }
         else
         {

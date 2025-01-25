@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 追尾する敵
+/// </summary>
 public class FollowSoldierEnemy : BaseEnemy
 {
+   
+
     private void Start()
     {
         Deffence = 5;
@@ -15,22 +19,31 @@ public class FollowSoldierEnemy : BaseEnemy
         //プレイヤーを感知する
         SetSense(gameObject.GetComponent<SoldierSensePlayer>());
     }
-
-    private void Update()
+    public override void EnemyUpadate()
     {
+
         if (_sense.IsLeftFindPlayer)
         {
             FollowLeftMove();
-        }else if (_sense.IsRightFindPlayer)
+        }
+        else if (_sense.IsRightFindPlayer)
         {
             FollowRightMove();
         }
         else
         {
             Move(); // 前進
-        }    
-        Attack();   // 攻撃
+        }
+        if (_sense.IsAttack)
+        {
+            Attack();   // 攻撃
+            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
+        }
+        else
+        {
+            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
+        }
+        
         Sense();//探知
     }
-
 }

@@ -1,7 +1,12 @@
 using UnityEngine;
 
+/// <summary>
+/// “G
+/// </summary>
 public abstract class BaseEnemy : MonoBehaviour
 {
+
+    protected EnemyStateController _enemyStateController;
     protected BaseEnemyMove _move;
     protected BaseEnemyJump _jump;
     protected BaseEnemyAttack _attack;
@@ -18,4 +23,15 @@ public abstract class BaseEnemy : MonoBehaviour
     public void Jump() => _jump?.EnemyJump();
     public void Attack() => _attack?.EnemyAttack();
     public void Sense() => _sense?.FindPlayer();
+    public abstract void EnemyUpadate();
+    private void OnEnable()
+    {
+            EnemyController.Instance.EnemyRegister(this);
+        _enemyStateController = GetComponent<EnemyStateController>();
+    }
+    private void OnDisable()
+    {
+            EnemyController.Instance.EnemyUnregister(this);  
+    }
+
 }

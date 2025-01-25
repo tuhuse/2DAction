@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Player _player;
-    private PlayerInput _playerInput;
-
-    void Start()
+    private void Start()
     {
         _player = GetComponent<Player>();
-        _playerInput = FindFirstObjectByType<PlayerInput>();
+        PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
 
+        // イベントに応じた動作を登録
+        playerInput.OnMove += HandleMovement;
+        playerInput.OnJump += HandleJump;
+        playerInput.OnAttack += HandleAttack;
+       
     }
 
-
-    public void UpdateInput()
+    private void HandleMovement(Vector2 direction)
     {
-
-        if (_playerInput.CanLeftMove)
+        if (direction.x < 0)
         {
             _player.LeftWalk();
         }
-        else if(_playerInput.CanRightMove)
+        else if (direction.x > 0)
         {
             _player.RightWalk();
         }
@@ -31,23 +30,20 @@ public class PlayerController : MonoBehaviour
             _player.MoveStop();
         }
 
-        
-        if (_playerInput.CanJump)
-        {
-            _player.Jump();
-        }
-
-
-        if (_playerInput.CanUseSkill)
-        {
-
-        }
-
+        // 移動処理
     }
-    public void UpdateAttack()
+
+    private void HandleJump()
+    {
+        _player.Jump(); 
+        // ジャンプ処理
+    }
+
+    private void HandleAttack()
     {
         _player.Attack();
+        // 攻撃処理
     }
 
-
+    
 }

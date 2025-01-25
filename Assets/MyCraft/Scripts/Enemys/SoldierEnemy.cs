@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SoldierEnemy : BaseEnemy
 {
+    
+
     private void Start()
     {
         Deffence = 5;
@@ -10,9 +12,9 @@ public class SoldierEnemy : BaseEnemy
 
         // ‹ßÚUŒ‚‚ğİ’è
         SetAttack(gameObject.GetComponent<SoldierEnemyAttack>());
+        _enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
     }
-
-    private void Update()
+    public override void EnemyUpadate()
     {
         Move(); // ‘Oi
         Attack();   // UŒ‚

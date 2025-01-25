@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 敵のステート管理
+/// </summary>
 public class EnemyStateController : MonoBehaviour
 {
     public enum EnemyState

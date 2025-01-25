@@ -1,42 +1,46 @@
+using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyController : MonoBehaviour
+/// <summary>
+/// ìGÇÃä«óù
+/// </summary>
+public class EnemyController : BaseUpdatable
 {
+   [SerializeField] private List<BaseEnemy> _baseEnemy = new List<BaseEnemy>();
     private EnemyStateController _stateManager;
     private EnemyAnimatorController _animatorController;
     private Rigidbody2D _rb;
 
     [SerializeField] private float walkSpeed = 2f;
+    public static EnemyController Instance { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
-        _stateManager = GetComponent<EnemyStateController>();
-        _animatorController = GetComponent<EnemyAnimatorController>();
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        if (_stateManager.CurrentState == EnemyStateController.EnemyState.Walking)
+        if (Instance != null && Instance != this)
         {
-            Walk();
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+    public void EnemyRegister(BaseEnemy baseEnemy)
+    {
+        if (!_baseEnemy.Contains(baseEnemy))
+        {
+            _baseEnemy.Add(baseEnemy);
         }
     }
-
-    private void Walk()
+    public void EnemyUnregister(BaseEnemy baseEnemy)
     {
-        _rb.velocity = new Vector2(walkSpeed, _rb.velocity.y);
-        _animatorController.SetMovementSpeed(walkSpeed);
+        if (_baseEnemy.Contains(baseEnemy))
+        {
+            _baseEnemy.Remove(baseEnemy);
+        }
     }
-
-    public void Attack()
+    public override void OnUpdate()
     {
-        _stateManager.ChangeState(EnemyStateController.EnemyState.Attacking);
-    }
-
-    public void Die()
-    {
-        _stateManager.ChangeState(EnemyStateController.EnemyState.Dying);
-        _rb.velocity = Vector2.zero; // ìÆÇ´Çí‚é~
+        foreach(BaseEnemy baseEnemy in _baseEnemy)
+        {
+            baseEnemy.EnemyUpadate();
+        }
     }
 }

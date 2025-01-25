@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// 敵のアニメーション管理
+/// </summary>
 public class EnemyAnimatorController : MonoBehaviour
 {
     private Animator _animator;

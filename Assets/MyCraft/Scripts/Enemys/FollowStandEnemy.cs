@@ -1,6 +1,8 @@
 
 public class FollowStandEnemy : BaseEnemy
 {
+  
+
     // Start is called before the first frame update
     void Start()
     {
@@ -10,13 +12,14 @@ public class FollowStandEnemy : BaseEnemy
         //プレイヤーを感知する
         SetSense(gameObject.GetComponent<StandSensePlayer>());
     }
+   
 
-    // Update is called once per frame
-    void Update()
+    public override void EnemyUpadate()
     {
         if (_sense.IsAttack)
         {
             Attack();
+            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
         }
         Sense();
     }

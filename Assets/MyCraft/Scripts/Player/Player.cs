@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections;
+
+
 public class Player : MonoBehaviour
 {
   
@@ -7,22 +8,31 @@ public class Player : MonoBehaviour
     private BaseDistanceEnemy _distanceEnemy;
     private EquipmentInventory _equipmentInventory;
     private BaseBodyEquipment _baseBodyEquipment => _equipmentInventory.BaseBodyEquipment;
-    private float _setInitializeEquipmentTime = 0.5f;
+  
     private void Start()
     {
         _equipmentInventory = EquipmentInventory.Instance;
-        _weapon = GetComponent<SordWeapon>();
-        _distanceEnemy = GetComponent<SordDistanceEnemy>();
-        // コンポーネントが存在しない場合の警告
-        if (_baseBodyEquipment== null) Debug.LogWarning("BasePlayerWalk component is missing!");
-        if (_weapon == null) Debug.LogWarning("BasePlayerAttack component is missing!");
+
+        // 動的にコンポーネントを解決
+        if (!TryGetComponent(out _weapon))
+        {
+            Debug.LogWarning("Weapon component is missing! Adding default.");
+            _weapon = gameObject.AddComponent<SordWeapon>();
+        }
+
+        if (!TryGetComponent(out _distanceEnemy))
+        {
+            Debug.LogWarning("DistanceEnemy component is missing!");
+            _distanceEnemy = gameObject.AddComponent<SordDistanceEnemy>();
+        }
     }
-  
+
+
     public void RightWalk()
     {
+        EnsureEquipmentInitialized();
         if (_baseBodyEquipment != null)
         {
-           
             if (!_equipmentInventory.IsChangeEquipment)
             {
                 _baseBodyEquipment.RightWalk();
@@ -32,16 +42,13 @@ public class Player : MonoBehaviour
             {
                 _baseBodyEquipment.StopMove();
             }
-          
-        }
-        else
-        {
-            _equipmentInventory.InitializeEquipment();
         }
     }
 
+
     public void LeftWalk()
     {
+        EnsureEquipmentInitialized();
         if (_baseBodyEquipment != null)
         {
            
@@ -55,22 +62,17 @@ public class Player : MonoBehaviour
                 _baseBodyEquipment.StopMove();
             }
         }
-        else
-        {
-            _equipmentInventory.InitializeEquipment(); 
-        }
+     
     }
 
     public void Jump()
     {
+        EnsureEquipmentInitialized();
         if (_baseBodyEquipment != null)
         {
             _baseBodyEquipment.Jump();
         }
-        else
-        {
-            _equipmentInventory.InitializeEquipment();
-        }
+     
     }
     public void MoveStop()
     {
@@ -92,13 +94,13 @@ public class Player : MonoBehaviour
         }
         
     }
-    //private IEnumerator InitializeEquipment()
-    //{
-    //    yield return new WaitForSeconds(_setInitializeEquipmentTime);
-    //    if (_baseBodyEquipment == null)
-    //    {
-    //        _equipmentInventory.InitializeEquipment();
-    //    }
-        
-    //}
+    private void EnsureEquipmentInitialized()
+    {
+        if (_baseBodyEquipment == null)
+        {
+            _equipmentInventory.InitializeEquipment();
+            Debug.LogWarning("BaseBodyEquipment initialized dynamically.");
+        }
+    }
+
 }
