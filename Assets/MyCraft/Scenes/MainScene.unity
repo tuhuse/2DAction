@@ -24128,6 +24128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b479fce55773bdc4e87cad74530297d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseEnemy: []
   walkSpeed: 2
 --- !u!1 &1634916975
 GameObject:
