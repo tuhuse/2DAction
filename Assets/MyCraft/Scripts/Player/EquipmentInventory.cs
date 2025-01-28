@@ -42,8 +42,16 @@ public class EquipmentInventory : MonoBehaviour
     /// </summary>
     public void ChangeBodyEquiment(BodyEquipmentData bodyEquipmentData)
     {
-        StartCoroutine(ChangeBodyEquipment());
+        StartCoroutine(ChangeWaitBodyEquipment());
         BodyEquipmentData = bodyEquipmentData; 
+        
+    }/// <summary>
+    ///ïêäÌÇêÿÇËë÷Ç¶ÇÈ
+    /// </summary>
+    public void ChangeWeaponEquiment(WeaponEqupmentData weaponEquipmentData)
+    {
+        StartCoroutine(ChangeWaitWeaponEquipment());
+        WeaponEquipmentData = weaponEquipmentData; 
         
     }
     /// <summary>
@@ -97,11 +105,18 @@ public class EquipmentInventory : MonoBehaviour
                 break;
         }
     }
-    private IEnumerator ChangeBodyEquipment()
+    private IEnumerator ChangeWaitBodyEquipment()
     {
         IsChangeEquipment = true;
         yield return new WaitForSeconds(WAIT_TIME);
         EquimentType();
+        IsChangeEquipment = false;
+        
+    } private IEnumerator ChangeWaitWeaponEquipment()
+    {
+        IsChangeEquipment = true;
+        yield return new WaitForSeconds(WAIT_TIME);
+        WeaponEquimentType();
         IsChangeEquipment = false;
         
     }

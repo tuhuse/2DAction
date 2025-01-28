@@ -46,7 +46,7 @@ public class PlayerStatus
     public void ChangeEquipment(BaseBodyEquipment newEquipment)
     {
         _currentBodyEquipment = newEquipment;
-        Debug.Log($"装備を変更: {_currentBodyEquipment.name}");
+        
     }
 
     // ダメージ計算

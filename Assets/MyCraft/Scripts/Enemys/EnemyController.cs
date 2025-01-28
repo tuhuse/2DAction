@@ -6,21 +6,21 @@ using UnityEngine;
 public class EnemyController : BaseUpdatable
 {
    [SerializeField] private List<BaseEnemy> _baseEnemy = new List<BaseEnemy>();
-    private EnemyStateController _stateManager;
-    private EnemyAnimatorController _animatorController;
-    private Rigidbody2D _rb;
 
     [SerializeField] private float walkSpeed = 2f;
     public static EnemyController Instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
     }
     public void EnemyRegister(BaseEnemy baseEnemy)
     {

@@ -5,13 +5,18 @@ public class InventorySystem : MonoBehaviour
 {
     private List<BodyEquipmentData> _bodyEquipments = new List<BodyEquipmentData>();
     private List<WeaponEqupmentData> _weaponEquipments = new List<WeaponEqupmentData>();
-
+    private InventoryUI _inventoryUI;
+    private void Start()
+    {
+        _inventoryUI = GameObject.FindAnyObjectByType<InventoryUI>();
+    }
     public void AddBodyEquipment(BodyEquipmentData equipment)
     {
         if (!_bodyEquipments.Contains(equipment))
         {
             _bodyEquipments.Add(equipment);
-            Debug.Log($"Added Body Equipment: {equipment.name}");
+            //_inventoryUI.UpdateEquipmentInventoryUI(equipment,);
+          
         }
     }
 
@@ -19,8 +24,7 @@ public class InventorySystem : MonoBehaviour
     {
         if (!_weaponEquipments.Contains(equipment))
         {
-            _weaponEquipments.Add(equipment);
-            Debug.Log($"Added Weapon Equipment: {equipment.name}");
+            _weaponEquipments.Add(equipment);      
         }
     }
 
@@ -31,7 +35,7 @@ public class InventorySystem : MonoBehaviour
             return _bodyEquipments[index];
         }
 
-        Debug.LogError("Invalid body equipment index.");
+        Debug.LogError("nanimohaittenai");
         return null;
     }
 
@@ -42,7 +46,7 @@ public class InventorySystem : MonoBehaviour
             return _weaponEquipments[index];
         }
 
-        Debug.LogError("Invalid weapon equipment index.");
+        Debug.LogError("nanimohaittenai");
         return null;
     }
 }

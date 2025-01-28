@@ -5,6 +5,7 @@ public class WeaponEqupmentData : ScriptableObject
     [SerializeField] private string _weaponName = "’Êí‘•”õ";
     [SerializeField] private int _attackPower;
     [SerializeField] private float _attackinterval;
+    [SerializeField] private Sprite _icon;
     public enum WeaponType
     {
         MeleeWeapon,
@@ -15,5 +16,6 @@ public class WeaponEqupmentData : ScriptableObject
     public string WeaponName => _weaponName;
     public int AttackPower => _attackPower;
     public float AttackInterval => _attackPower;
+    public Sprite Icon => _icon;
     public WeaponType Weapon => _weaponType;
 }

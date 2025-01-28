@@ -7,8 +7,19 @@ using UnityEngine;
 public class UpdateManager : MonoBehaviour
 {
    [SerializeField] private List<BaseUpdatable> _updatables = new List<BaseUpdatable>();
-
     public static UpdateManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
     public void Register(BaseUpdatable updatable)
     {
         if (!_updatables.Contains(updatable))
