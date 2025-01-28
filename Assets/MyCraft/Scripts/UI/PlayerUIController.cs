@@ -9,7 +9,7 @@ public class PlayerUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _status= EquipmentInventory.Instance._playerStatus;
+        _status= PlayerEquipmentManager.Instance._playerStatus;
         _status.InitializeHealthBar(_healthBar);
     }
 }

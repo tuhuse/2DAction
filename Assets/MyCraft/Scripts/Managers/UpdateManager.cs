@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,5 +43,6 @@ public class UpdateManager : MonoBehaviour
         {
             updatable.OnUpdate();
         }
+        
     }
 }

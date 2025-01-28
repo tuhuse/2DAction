@@ -16,4 +16,6 @@ MonoBehaviour:
   _defense: 20
   _moveSpeed: 20
   _jumpPower: 15
+  _icon: {fileID: 0}
+  _gravityScale: 0
   _equipmentType: 1

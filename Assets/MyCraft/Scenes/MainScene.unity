@@ -23754,6 +23754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updatables: []
+  _equipmentManager: {fileID: 0}
 --- !u!114 &1618610850
 MonoBehaviour:
   m_ObjectHideFlags: 0

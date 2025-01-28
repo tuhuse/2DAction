@@ -6,12 +6,12 @@ public class Player : MonoBehaviour
   
     private BaseWeapon _weapon;
     private BaseDistanceEnemy _distanceEnemy;
-    private EquipmentInventory _equipmentInventory;
+    private PlayerEquipmentManager _equipmentInventory;
     private BaseBodyEquipment _baseBodyEquipment => _equipmentInventory.BaseBodyEquipment;
   
     private void Start()
     {
-        _equipmentInventory = EquipmentInventory.Instance;
+        _equipmentInventory = PlayerEquipmentManager.Instance;
 
         // 動的にコンポーネントを解決
         if (!TryGetComponent(out _weapon))

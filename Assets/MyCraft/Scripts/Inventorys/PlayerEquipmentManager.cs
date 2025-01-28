@@ -4,14 +4,14 @@ using UnityEngine;
 /// <summary>
 /// ‘•”õ‚ÌƒCƒ“ƒxƒ“ƒgƒŠ
 /// </summary>
-public class EquipmentInventory : MonoBehaviour
+public class PlayerEquipmentManager : MonoBehaviour
 {
     [SerializeField] private BodyEquipmentData _equipmentData;
     [SerializeField] private WeaponEqupmentData _weaponData;
     private const float WAIT_TIME= 0.01f;
     public PlayerStatus _playerStatus = new PlayerStatus();
 
-    public static EquipmentInventory Instance { get; private set; }
+    public static PlayerEquipmentManager Instance { get; private set; }
     public BodyEquipmentData BodyEquipmentData { get; private set; }
     public WeaponEqupmentData WeaponEquipmentData { get; private set; }
     public BaseBodyEquipment BaseBodyEquipment { get; private set; }

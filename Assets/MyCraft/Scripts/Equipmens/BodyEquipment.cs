@@ -28,7 +28,7 @@ public class BodyEquipment : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                EquipmentInventory.Instance.ChangeBodyEquiment(_equipmentdata);
+                InventorySystem.Instance.AddBodyEquipment(_equipmentdata);
                 Destroy(gameObject);
             }
         }
