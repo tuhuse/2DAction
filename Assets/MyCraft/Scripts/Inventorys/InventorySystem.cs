@@ -22,7 +22,7 @@ public class InventorySystem : MonoBehaviour
     }
     private void Start()
     {
-        _inventoryUI = GameObject.FindAnyObjectByType<InventoryUI>();
+        _inventoryUI = GameObject.FindFirstObjectByType<InventoryUI>();
     }
     public void AddBodyEquipment(BodyEquipmentData equipment)
     {
