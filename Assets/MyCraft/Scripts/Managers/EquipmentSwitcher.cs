@@ -13,7 +13,7 @@ public class EquipmentSwitcher : MonoBehaviour
     /// <summary>
     /// 身体装備を変更する処理
     /// </summary>
-    /// <param name="index"></param>
+    /// <param name="index">装備する武器のインベントリ内のインデックス</param>
     public void EquipBodyEquipment(int index)
     {
         // インベントリから新しい装備を取得
@@ -36,7 +36,7 @@ public class EquipmentSwitcher : MonoBehaviour
     /// <summary>
     /// 武器装備を変更する処理
     /// </summary>
-    /// <param name="index"></param>
+    /// <param name="index">装備する武器のインベントリ内のインデックス</param>
     public void EquipWeapon(int index)
     {
         // インベントリから新しい武器を取得
