@@ -6,7 +6,7 @@ public class FollowStandEnemy : BaseEnemy
     // Start is called before the first frame update
     void Start()
     {
-        Deffence = 15;
+        Defence = 15;
         // 近接攻撃を設定
         SetAttack(gameObject.GetComponent<StandEnemyAttack>());
         //プレイヤーを感知する
@@ -14,7 +14,7 @@ public class FollowStandEnemy : BaseEnemy
     }
    
 
-    public override void EnemyUpadate()
+    public override void EnemyUpdate()
     {
         if (_sense.IsAttack)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponEquipmentData", menuName = "Equipment/Weapon")]
-public class WeaponEqupmentData : ScriptableObject
+public class WeaponEquipmentData : ScriptableObject
 {
     [SerializeField] private string _weaponName = "’Êí‘•”õ";
     [SerializeField] private int _attackPower;

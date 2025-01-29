@@ -17,7 +17,7 @@ public class EnemyStatus : MonoBehaviour
         {
             if (_currentEnemyDeffence != null)
             {
-                return _currentEnemyDeffence.Deffence;
+                return _currentEnemyDeffence.Defence;
             }
             else { return 0; }
         }

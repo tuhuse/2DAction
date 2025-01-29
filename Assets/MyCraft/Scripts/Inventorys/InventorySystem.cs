@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
     private List<BodyEquipmentData> _bodyEquipments = new List<BodyEquipmentData>();
-    private List<WeaponEqupmentData> _weaponEquipments = new List<WeaponEqupmentData>();
+    private List<WeaponEquipmentData> _weaponEquipments = new List<WeaponEquipmentData>();
     private InventoryUI _inventoryUI;
 
     public static InventorySystem Instance { get; private set; }
@@ -38,7 +38,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void AddWeaponEquipment(WeaponEqupmentData equipment)
+    public void AddWeaponEquipment(WeaponEquipmentData equipment)
     {
         if (!_weaponEquipments.Contains(equipment))
         {
@@ -60,18 +60,18 @@ public class InventorySystem : MonoBehaviour
             return _bodyEquipments[index];
         }
 
-        Debug.LogError("nanimohaittenai");
+        Debug.Log("nanimohaittenai");
         return null;
     }
 
-    public WeaponEqupmentData GetWeaponEquipment(int index)
+    public WeaponEquipmentData GetWeaponEquipment(int index)
     {
         if (index >= 0 && index < _weaponEquipments.Count)
         {
             return _weaponEquipments[index];
         }
 
-        Debug.LogError("nanimohaittenai");
+        Debug.Log("nanimohaittenai");
         return null;
     }
 }

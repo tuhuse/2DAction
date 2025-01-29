@@ -9,6 +9,7 @@ public class EquipmentSwitcher : MonoBehaviour
     private void Start()
     {
         _inventorySystem=InventorySystem.Instance;
+        _playerEquipment = PlayerEquipmentManager.Instance;
     }
     /// <summary>
     /// 身体装備を変更する処理
@@ -22,14 +23,14 @@ public class EquipmentSwitcher : MonoBehaviour
         if (newEquipment != null)
         {
             // 現在の装備をインベントリに戻す
-            BodyEquipmentData currentEquipment = _playerEquipment.BodyEquipmentData;
+            BodyEquipmentData currentEquipment = _playerEquipment.NowBodyEquipment;
             if (currentEquipment != null)
             {
                 _inventorySystem.AddBodyEquipment(currentEquipment);
             }
 
             // 新しい装備に変更
-            _playerEquipment.ChangeBodyEquiment(newEquipment);
+            _playerEquipment.ChangeBodyEquipment(newEquipment);
         }
     }
 
@@ -40,19 +41,19 @@ public class EquipmentSwitcher : MonoBehaviour
     public void EquipWeapon(int index)
     {
         // インベントリから新しい武器を取得
-        WeaponEqupmentData newWeapon = _inventorySystem.GetWeaponEquipment(index);
+        WeaponEquipmentData newWeapon = _inventorySystem.GetWeaponEquipment(index);
 
         if (newWeapon != null)
         {
             // 現在の武器をインベントリに戻す
-            WeaponEqupmentData currentWeapon = _playerEquipment.WeaponEquipmentData;
+            WeaponEquipmentData currentWeapon = _playerEquipment.NowWeapon;
             if (currentWeapon != null)
             {
                 _inventorySystem.AddWeaponEquipment(currentWeapon);
             }
 
             // 新しい武器に変更
-            _playerEquipment.ChangeWeaponEquiment(newWeapon);
+            _playerEquipment.ChangeWeaponEquipment(newWeapon);
         }
     }
 }

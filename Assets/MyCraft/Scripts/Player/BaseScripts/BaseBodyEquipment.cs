@@ -30,7 +30,7 @@ public abstract class BaseBodyEquipment : MonoBehaviour
     }
     public void SetEqueipment()
     {
-        _equeipmentdata = PlayerEquipmentManager.Instance.BodyEquipmentData;
+        _equeipmentdata = PlayerEquipmentManager.Instance.NowBodyEquipment;
     }
     
 }

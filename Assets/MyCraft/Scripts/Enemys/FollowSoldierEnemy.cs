@@ -10,7 +10,7 @@ public class FollowSoldierEnemy : BaseEnemy
 
     private void Start()
     {
-        Deffence = 5;
+        Defence = 5;
         // 移動とジャンプの機能を設定
         SetMovement(gameObject.GetComponent<FollowSoldierEnemyMove>());
 
@@ -19,7 +19,7 @@ public class FollowSoldierEnemy : BaseEnemy
         //プレイヤーを感知する
         SetSense(gameObject.GetComponent<SoldierSensePlayer>());
     }
-    public override void EnemyUpadate()
+    public override void EnemyUpdate()
     {
 
         if (_sense.IsLeftFindPlayer)

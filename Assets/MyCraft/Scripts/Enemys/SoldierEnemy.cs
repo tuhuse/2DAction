@@ -6,7 +6,7 @@ public class SoldierEnemy : BaseEnemy
 
     private void Start()
     {
-        Deffence = 5;
+        Defence = 5;
         // 移動とジャンプの機能を設定
         SetMovement(gameObject.GetComponent<SoldierEnemyMove>());
 
@@ -14,7 +14,7 @@ public class SoldierEnemy : BaseEnemy
         SetAttack(gameObject.GetComponent<SoldierEnemyAttack>());
         _enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
     }
-    public override void EnemyUpadate()
+    public override void EnemyUpdate()
     {
         Move(); // 前進
         Attack();   // 攻撃

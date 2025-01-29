@@ -40,7 +40,7 @@ public class EnemyController : BaseUpdatable
     {
         foreach(BaseEnemy baseEnemy in _baseEnemy)
         {
-            baseEnemy.EnemyUpadate();
+            baseEnemy.EnemyUpdate();
         }
     }
 }

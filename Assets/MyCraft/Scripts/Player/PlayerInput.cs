@@ -6,10 +6,10 @@ using UnityEngine;
 /// </summary>
 public class PlayerInput : BaseUpdatable
 {
-    public event Action<Vector2> OnMove;  // 移動入力イベント
-    public event Action OnJump;          // ジャンプ入力イベント
-    public event Action OnAttack;        // 攻撃入力イベント
-    public event Action OnUseSkill;      // スキル使用イベント
+    private event Action<Vector2> _handleMove;  // 移動入力イベント
+    private event Action _handleJump;          // ジャンプ入力イベント
+    private event Action _handleAttack;        // 攻撃入力イベント
+    private event Action OnUseSkill;      // スキル使用イベント
 
     public string WalkPadInput => "Horizontal"; // デフォルト設定の軸名を使用
     public string JumpPadInput => "Jump";      // デフォルト設定のボタン名
@@ -17,6 +17,30 @@ public class PlayerInput : BaseUpdatable
     public bool CanLeftMove => /*Input.GetAxis(WalkPadInput) < 0 ||*/ Input.GetKey(KeyCode.A);
     public bool CanRightMove =>/*Input.GetAxis(WalkPadInput)>0||*/ Input.GetKey(KeyCode.D);
     public bool CanJump => Input.GetButtonDown(JumpPadInput) || Input.GetKeyDown(KeyCode.Space);
+    /// <summary>
+    /// プレイヤー移動
+    /// </summary>
+    public event Action<Vector2> HandleMove
+    {
+        add => _handleMove += value;
+        remove => _handleMove -= value;
+    }
+    /// <summary>
+    /// プレイヤージャンプ
+    /// </summary>
+    public event Action HandleJump
+    {
+        add => _handleJump += value;
+        remove => _handleJump -= value;
+    }
+    /// <summary>
+     /// プレイヤー攻撃
+     /// </summary>
+    public event Action HandleAttack
+    {
+        add => _handleAttack += value;
+        remove => _handleAttack -= value;
+    }
 
     public override void OnUpdate()
     {
@@ -25,13 +49,14 @@ public class PlayerInput : BaseUpdatable
     }
     private void HandleMovementInput()
     {
-      
+
         if (CanLeftMove)
         {
-            OnMove?.Invoke(new Vector2(-1, 0));
-        }else if (CanRightMove)
+            _handleMove?.Invoke(new Vector2(-1, 0));
+        }
+        else if (CanRightMove)
         {
-            OnMove?.Invoke(new Vector2(1, 0));
+            _handleMove?.Invoke(new Vector2(1, 0));
         }
     }
 
@@ -39,12 +64,12 @@ public class PlayerInput : BaseUpdatable
     {
         if (CanJump)
         {
-            OnJump?.Invoke();
+            _handleJump?.Invoke();
         }
-      
-        OnAttack?.Invoke();
-    }
-    
 
-   
+        _handleAttack?.Invoke();
+    }
+
+
+
 }

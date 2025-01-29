@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
         PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
 
         // ƒCƒxƒ“ƒg‚É‰‚¶‚½“®ì‚ğ“o˜^
-        playerInput.OnMove += HandleMovement;
-        playerInput.OnJump += HandleJump;
-        playerInput.OnAttack += HandleAttack;
+        playerInput.HandleMove += HandleMovement;
+        playerInput.HandleJump += HandleJump;
+        playerInput.HandleAttack += HandleAttack;
        
     }
 

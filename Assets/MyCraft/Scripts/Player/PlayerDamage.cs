@@ -27,17 +27,17 @@ public class PlayerDamage : MonoBehaviour
         if (collision.gameObject.CompareTag("SoldierEnemy"))
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance._playerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
+            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
         }
         if (collision.gameObject.CompareTag("StandEnemy"))
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance._playerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
+            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
         }
         if (collision.gameObject.layer == THORN_LAYER_NUBER)
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance._playerStatus.TakeDamage(_thornDamage);
+            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(_thornDamage);
         }
         if (collision.gameObject.CompareTag("ClearFlag"))
         {
@@ -52,7 +52,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("StandEnemy"))
         {
-            PlayerEquipmentManager.Instance._playerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
+            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
         }
     }
    

@@ -63,7 +63,7 @@ public class InventoryUI : MonoBehaviour
     {
         _equpmentInventorySlots[index].sprite = bodyEquipmentData.Icon;
     }
-    public void UpdateWeaponInventoryUI(WeaponEqupmentData weaponEquipmentData, int index)
+    public void UpdateWeaponInventoryUI(WeaponEquipmentData weaponEquipmentData, int index)
     {
         _equpmentInventorySlots[index].sprite = weaponEquipmentData.Icon;
     }

@@ -6,17 +6,22 @@ using UnityEngine;
 /// </summary>
 public class PlayerEquipmentManager : MonoBehaviour
 {
-    [SerializeField] private BodyEquipmentData _equipmentData;
-    [SerializeField] private WeaponEqupmentData _weaponData;
+    [SerializeField] private BodyEquipmentData _defaultBodyEquipmentData;
+    [SerializeField] private WeaponEquipmentData _defaultWeaponData;
+    [SerializeField] private SpriteRenderer _playerSprite;
+    private BodyEquipmentData _currentBodyEquipment;
+    private WeaponEquipmentData _currentWeaponEquipment;
     private const float WAIT_TIME= 0.01f;
-    public PlayerStatus _playerStatus = new PlayerStatus();
+    
 
     public static PlayerEquipmentManager Instance { get; private set; }
-    public BodyEquipmentData BodyEquipmentData { get; private set; }
-    public WeaponEqupmentData WeaponEquipmentData { get; private set; }
+    public PlayerStatus PlayerStatus { get; private set; } = new PlayerStatus();  
     public BaseBodyEquipment BaseBodyEquipment { get; private set; }
     public BaseWeapon EquipWeapon { get; private set; }
-    public bool IsChangeEquipment { get; private set; }
+    public bool IsChangingEquipment { get; private set; }
+
+    public BodyEquipmentData NowBodyEquipment { get; private set; }
+    public WeaponEquipmentData NowWeapon { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -33,25 +38,20 @@ public class PlayerEquipmentManager : MonoBehaviour
     private void Start()
     {
         InitializeEquipment();
-        BodyEquipmentData = _equipmentData;
-        // 初期化
-        _playerStatus.InitializeBodyEquipment(BaseBodyEquipment);
     }
     /// <summary>
     /// 装備を切り替える
     /// </summary>
-    public void ChangeBodyEquiment(BodyEquipmentData bodyEquipmentData)
+    public void ChangeBodyEquipment(BodyEquipmentData bodyEquipmentData)
     {
-        StartCoroutine(ChangeWaitBodyEquipment());
-        BodyEquipmentData = bodyEquipmentData; 
+        StartCoroutine(HandleBodyEquipmentChange(bodyEquipmentData));
         
     }/// <summary>
     ///武器を切り替える
     /// </summary>
-    public void ChangeWeaponEquiment(WeaponEqupmentData weaponEquipmentData)
+    public void ChangeWeaponEquipment(WeaponEquipmentData weaponEquipmentData)
     {
-        StartCoroutine(ChangeWaitWeaponEquipment());
-        WeaponEquipmentData = weaponEquipmentData; 
+        StartCoroutine(HandleWeaponEquipmentChange(weaponEquipmentData));
         
     }
     /// <summary>
@@ -61,63 +61,85 @@ public class PlayerEquipmentManager : MonoBehaviour
     {
         if (BaseBodyEquipment == null)
         {
-            BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
-            BodyEquipmentData = _equipmentData;
-            _playerStatus.ChangeEquipment(BaseBodyEquipment);
+            BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();           
+            _currentBodyEquipment = _defaultBodyEquipmentData;
+            NowBodyEquipment = _currentBodyEquipment;
+            PlayerStatus.ChangeEquipment(BaseBodyEquipment);
         }
-      
     }
     /// <summary>
     /// 装備の種類に応じた装備処理
     /// </summary>
-    private void EquimentType()
+    private void ApplyBodyEquipmentType()
     {
-        switch (BodyEquipmentData.Equipment)
+        Destroy(BaseBodyEquipment);
+        switch (_currentBodyEquipment.Equipment)
         {
             case BodyEquipmentData.EquipmentType.Nomal:
-                Destroy(BaseBodyEquipment);
+               
                 BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
-                _playerStatus.ChangeEquipment(BaseBodyEquipment);
                
                 break;
             case BodyEquipmentData.EquipmentType.Strong:
-                Destroy(BaseBodyEquipment);
+               
                 BaseBodyEquipment = gameObject.AddComponent<StrongBodyEquipment>();
-                _playerStatus.ChangeEquipment(BaseBodyEquipment);
+             
                 
                 break;
             case BodyEquipmentData.EquipmentType.hobber:
                 break;
         }
-    }private void WeaponEquimentType()
+        PlayerStatus.ChangeEquipment(BaseBodyEquipment);
+    }
+    /// <summary>
+    /// 武器の種類に応じた処理
+    /// </summary>
+    private void ApplyWeaponType()
     {
-        switch (WeaponEquipmentData.Weapon)
+        if (_currentWeaponEquipment == null) return;
+
+        switch (_currentWeaponEquipment.Weapon)
         {
-            case WeaponEqupmentData.WeaponType.MeleeWeapon:
-            
-               
+            case WeaponEquipmentData.WeaponType.MeleeWeapon:
+                // メレー武器用の処理
                 break;
-            case WeaponEqupmentData.WeaponType.RangeWeapon:
-             
-                
+            case WeaponEquipmentData.WeaponType.RangeWeapon:
+                // 遠距離武器用の処理
                 break;
-            case WeaponEqupmentData.WeaponType.SummonWeapon:
+            case WeaponEquipmentData.WeaponType.SummonWeapon:
+                // 召喚武器用の処理
+                break;
+            default:
+              
                 break;
         }
     }
-    private IEnumerator ChangeWaitBodyEquipment()
+    /// <summary>
+    /// 装備変更の待機処理
+    /// </summary>
+    private IEnumerator HandleBodyEquipmentChange(BodyEquipmentData newEquipment)
     {
-        IsChangeEquipment = true;
+        IsChangingEquipment = true;
         yield return new WaitForSeconds(WAIT_TIME);
-        EquimentType();
-        IsChangeEquipment = false;
-        
-    } private IEnumerator ChangeWaitWeaponEquipment()
+
+        _currentBodyEquipment = newEquipment;
+        _playerSprite.sprite = newEquipment.Icon;
+        NowBodyEquipment = newEquipment;
+        ApplyBodyEquipmentType();
+
+        IsChangingEquipment = false;
+    }
+    /// <summary>
+    /// 武器変更の待機処理
+    /// </summary>
+    private IEnumerator HandleWeaponEquipmentChange(WeaponEquipmentData newWeapon)
     {
-        IsChangeEquipment = true;
+        IsChangingEquipment = true;
         yield return new WaitForSeconds(WAIT_TIME);
-        WeaponEquimentType();
-        IsChangeEquipment = false;
-        
+
+        _currentWeaponEquipment = newWeapon;
+        ApplyWeaponType();
+
+        IsChangingEquipment = false;
     }
 }

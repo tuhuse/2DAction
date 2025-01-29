@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         EnsureEquipmentInitialized();
         if (_baseBodyEquipment != null)
         {
-            if (!_equipmentInventory.IsChangeEquipment)
+            if (!_equipmentInventory.IsChangingEquipment)
             {
                 _baseBodyEquipment.RightWalk();
                 this.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         if (_baseBodyEquipment != null)
         {
            
-            if (!_equipmentInventory.IsChangeEquipment)
+            if (!_equipmentInventory.IsChangingEquipment)
             {
                 _baseBodyEquipment.LeftWalk();
                 this.transform.rotation = Quaternion.Euler(0, 180, 0);
