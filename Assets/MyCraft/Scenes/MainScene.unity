@@ -8950,7 +8950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9df64439f670a24c922d9b4871d39c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipmentdata: {fileID: 11400000, guid: 8e929977d1d2e034db6560d1b48b8881, type: 2}
+  _equipmentdata: {fileID: 11400000, guid: 4f88d87a3c0a3134c9b215008f4e9b9b, type: 2}
 --- !u!212 &600224305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30103,7 +30103,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultBodyEquipmentData: {fileID: 11400000, guid: 5cca1cf2672764f469e52dda8c21365e, type: 2}
   _defaultWeaponData: {fileID: 11400000, guid: fcb72ea0f42b1084f895fe2a090a5ca8, type: 2}
-  _playerSprite: {fileID: 156353781}
+  _playerSprite:
+  - {fileID: 1934040999}
+  - {fileID: 1506024142}
+  - {fileID: 1177855652}
+  - {fileID: 594664745}
+  - {fileID: 1206729715}
+  - {fileID: 629457839}
+  - {fileID: 737988800}
+  - {fileID: 1007302339}
 --- !u!114 &2061329460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30152,12 +30160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151c93cf34d36143b86b9d9ed069a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equpmentSlotPrefab: {fileID: 7851303522641331653, guid: c734090b1e870cb488e99308fa39f12d, type: 3}
+  _equipmentSlotPrefab: {fileID: 7851303522641331653, guid: c734090b1e870cb488e99308fa39f12d, type: 3}
   _weaponSlotPrefab: {fileID: 1372689801356681230, guid: 17b41255ca1c74445b721bb741460681, type: 3}
-  slotParent:
+  slotParents:
   - {fileID: 664173625}
   - {fileID: 1376261932}
-  _equpmentSlotCount: 5
+  _equipmentSlotCount: 5
   _weaponSlotCount: 3
 --- !u!1 &2067914474
 GameObject:

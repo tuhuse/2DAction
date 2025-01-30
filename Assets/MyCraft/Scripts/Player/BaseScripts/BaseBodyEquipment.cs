@@ -6,15 +6,31 @@ public abstract class BaseBodyEquipment : MonoBehaviour
 {
     protected Rigidbody2D _playerRigidbody = default;
     protected BoxCollider2D _playerCupsuleCollider = default;
-    protected BodyEquipmentData _equeipmentdata;
+    protected BodyEquipmentData _equipmentData;
     protected GameObject _player;
-    protected float JumpPower =>_equeipmentdata.JumpPower ;
-    protected float WalkSpeed  =>_equeipmentdata.MoveSpeed;
-    public int Deffence => _equeipmentdata.Defense;
+    protected float JumpPower =>_equipmentData.JumpPower ;
+    protected float WalkSpeed  =>_equipmentData.MoveSpeed;
+    public int Deffence => _equipmentData.Defense;
     
     protected bool IsJump { get; set; } = false;
 
-    protected abstract void Start();   
+    protected void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerRigidbody = _player.GetComponent<Rigidbody2D>();
+        _playerCupsuleCollider = _player.GetComponent<BoxCollider2D>();
+
+        _equipmentData = _player.GetComponent<Player>().GetBodyEquipmentData();
+        // プレイヤーの衝突検知スクリプトを取得
+        PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();
+        if (collisionDetector != null)
+        {
+            collisionDetector.OnPlayerCollisionStay += HandleCollisionStay;
+            collisionDetector.OnPlayerCollisionExit += HandleCollisionExit;
+        }     
+    }
+
+   
     public abstract void RightWalk();
     public abstract void LeftWalk();
 
@@ -28,9 +44,6 @@ public abstract class BaseBodyEquipment : MonoBehaviour
         _playerRigidbody.velocity = new Vector2(0, _playerRigidbody.velocity.y);
         
     }
-    public void SetEqueipment()
-    {
-        _equeipmentdata = PlayerEquipmentManager.Instance.NowBodyEquipment;
-    }
-    
+    protected abstract void HandleCollisionStay(Collision2D collision);
+    protected abstract void HandleCollisionExit(Collision2D collider2D);
 }

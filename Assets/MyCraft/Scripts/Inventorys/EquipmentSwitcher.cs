@@ -1,37 +1,46 @@
 using UnityEngine;
-
+/// <summary>
+/// インベントリから装備をする処理
+/// </summary>
 public class EquipmentSwitcher : MonoBehaviour
 {
-     private InventorySystem _inventorySystem;
-     private PlayerEquipmentManager _playerEquipment;
+    private InventorySystem _inventorySystem;
+    private PlayerEquipmentManager _playerEquipment;
 
 
     private void Start()
     {
-        _inventorySystem=InventorySystem.Instance;
-        _playerEquipment = PlayerEquipmentManager.Instance;
+        _inventorySystem = GetComponent<InventorySystem>();
+        _playerEquipment = GetComponent<PlayerEquipmentManager>();
     }
     /// <summary>
-    /// 身体装備を変更する処理
+    /// 装備を変更する処理
     /// </summary>
     /// <param name="index">装備する武器のインベントリ内のインデックス</param>
     public void EquipBodyEquipment(int index)
     {
+        if (_inventorySystem == null || _playerEquipment == null)
+        {
+            Debug.Log("ない");
+            return;
+        }
         // インベントリから新しい装備を取得
         BodyEquipmentData newEquipment = _inventorySystem.GetBodyEquipment(index);
 
-        if (newEquipment != null)
+        if (newEquipment == null)
         {
-            // 現在の装備をインベントリに戻す
-            BodyEquipmentData currentEquipment = _playerEquipment.NowBodyEquipment;
-            if (currentEquipment != null)
-            {
-                _inventorySystem.AddBodyEquipment(currentEquipment);
-            }
-
-            // 新しい装備に変更
-            _playerEquipment.ChangeBodyEquipment(newEquipment);
+            return;
         }
+        // 現在の装備をインベントリに戻す
+        BodyEquipmentData currentEquipment = _playerEquipment.CurrentBodyEquipment;
+        if (currentEquipment != null)
+        {
+            _inventorySystem.AddBodyEquipment(currentEquipment);
+        }
+
+        // 新しい装備に変更
+        _playerEquipment.ChangeBodyEquipment(newEquipment);
+
     }
 
     /// <summary>
@@ -46,7 +55,7 @@ public class EquipmentSwitcher : MonoBehaviour
         if (newWeapon != null)
         {
             // 現在の武器をインベントリに戻す
-            WeaponEquipmentData currentWeapon = _playerEquipment.NowWeapon;
+            WeaponEquipmentData currentWeapon = _playerEquipment.CurrentWeaponEquipment;
             if (currentWeapon != null)
             {
                 _inventorySystem.AddWeaponEquipment(currentWeapon);

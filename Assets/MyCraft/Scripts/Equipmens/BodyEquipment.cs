@@ -7,6 +7,7 @@ using UnityEngine;
 public class BodyEquipment : MonoBehaviour
 {
     [SerializeField] private BodyEquipmentData _equipmentdata;
+     private InventorySystem _inventorySystem;
     private Transform _player;
     private const float LOOK_DISTANCE = 5; 
     private bool _isLookEquipment = false;
@@ -14,6 +15,7 @@ public class BodyEquipment : MonoBehaviour
    private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _inventorySystem = GameObject.FindFirstObjectByType<InventorySystem>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class BodyEquipment : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                InventorySystem.Instance.AddBodyEquipment(_equipmentdata);
+                _inventorySystem.AddBodyEquipment(_equipmentdata);
                 Destroy(gameObject);
             }
         }

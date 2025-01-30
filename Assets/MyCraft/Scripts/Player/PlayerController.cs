@@ -1,7 +1,10 @@
 using UnityEngine;
-
+/// <summary>
+/// ƒvƒŒƒCƒ„[‚Ì“ü—Í‚ğˆ—‚·‚é
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+    public PlayerStatus PlayerStatus { get; private set; } = new PlayerStatus();
     private Player _player;
     private void Start()
     {

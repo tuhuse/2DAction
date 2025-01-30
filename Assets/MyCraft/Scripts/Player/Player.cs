@@ -1,18 +1,20 @@
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーの動作を処理する
+/// </summary>
 
 public class Player : MonoBehaviour
 {
   
     private BaseWeapon _weapon;
     private BaseDistanceEnemy _distanceEnemy;
-    private PlayerEquipmentManager _equipmentInventory;
-    private BaseBodyEquipment _baseBodyEquipment => _equipmentInventory.BaseBodyEquipment;
+    private PlayerEquipmentManager _equipmentManager;
+    private BaseBodyEquipment BaseBodyEquipment => _equipmentManager.BaseBodyEquipment;
   
     private void Start()
     {
-        _equipmentInventory = PlayerEquipmentManager.Instance;
-
+        _equipmentManager = GameObject.FindFirstObjectByType<PlayerEquipmentManager>();
         // 動的にコンポーネントを解決
         if (!TryGetComponent(out _weapon))
         {
@@ -31,16 +33,16 @@ public class Player : MonoBehaviour
     public void RightWalk()
     {
         EnsureEquipmentInitialized();
-        if (_baseBodyEquipment != null)
+        if (BaseBodyEquipment != null)
         {
-            if (!_equipmentInventory.IsChangingEquipment)
+            if (!_equipmentManager.IsChangingEquipment)
             {
-                _baseBodyEquipment.RightWalk();
+                BaseBodyEquipment.RightWalk();
                 this.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
-                _baseBodyEquipment.StopMove();
+                BaseBodyEquipment.StopMove();
             }
         }
     }
@@ -49,17 +51,17 @@ public class Player : MonoBehaviour
     public void LeftWalk()
     {
         EnsureEquipmentInitialized();
-        if (_baseBodyEquipment != null)
+        if (BaseBodyEquipment != null)
         {
            
-            if (!_equipmentInventory.IsChangingEquipment)
+            if (!_equipmentManager.IsChangingEquipment)
             {
-                _baseBodyEquipment.LeftWalk();
+                BaseBodyEquipment.LeftWalk();
                 this.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else
             {
-                _baseBodyEquipment.StopMove();
+                BaseBodyEquipment.StopMove();
             }
         }
      
@@ -68,15 +70,15 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         EnsureEquipmentInitialized();
-        if (_baseBodyEquipment != null)
+        if (BaseBodyEquipment != null)
         {
-            _baseBodyEquipment.Jump();
+            BaseBodyEquipment.Jump();
         }
      
     }
     public void MoveStop()
     {
-        _baseBodyEquipment.GetKeyUpStopMove();
+        BaseBodyEquipment.GetKeyUpStopMove();
     }
     public void Attack()
     {
@@ -96,11 +98,14 @@ public class Player : MonoBehaviour
     }
     private void EnsureEquipmentInitialized()
     {
-        if (_baseBodyEquipment == null)
+        if (BaseBodyEquipment == null)
         {
-            _equipmentInventory.InitializeEquipment();
+            _equipmentManager.InitializeEquipment();
             Debug.LogWarning("BaseBodyEquipment initialized dynamically.");
         }
     }
-
+    public BodyEquipmentData GetBodyEquipmentData()
+    {
+        return _equipmentManager.CurrentBodyEquipment;
+    }
 }

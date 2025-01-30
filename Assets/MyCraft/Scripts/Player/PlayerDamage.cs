@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
+    private PlayerController _playerController;
     private GameObject _standEnemy;
     private const int THORN_LAYER_NUBER = 7;
     private int _thornDamage = 10;
     void Start()
     {
         _standEnemy = GameObject.FindGameObjectWithTag("StandEnemy");
+
         PlayerCollisionDetector collisionDetector = GetComponent<PlayerCollisionDetector>();
         if (collisionDetector != null)
         {
@@ -27,17 +29,17 @@ public class PlayerDamage : MonoBehaviour
         if (collision.gameObject.CompareTag("SoldierEnemy"))
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
+           _playerController.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
         }
         if (collision.gameObject.CompareTag("StandEnemy"))
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
+            _playerController.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
         }
         if (collision.gameObject.layer == THORN_LAYER_NUBER)
         {
             // ダメージを受けた処理
-            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(_thornDamage);
+            _playerController.PlayerStatus.TakeDamage(_thornDamage);
         }
         if (collision.gameObject.CompareTag("ClearFlag"))
         {
@@ -52,7 +54,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("StandEnemy"))
         {
-            PlayerEquipmentManager.Instance.PlayerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
+            _playerController.PlayerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
         }
     }
    

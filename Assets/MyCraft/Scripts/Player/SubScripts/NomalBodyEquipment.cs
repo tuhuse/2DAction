@@ -7,23 +7,6 @@ public class NomalBodyEquipment : BaseBodyEquipment
 
     private const int MAX_JUMP_COUNT = 2;
     private int _currentJumpCount = 0;
-    protected override void Start()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _playerRigidbody = _player.GetComponent<Rigidbody2D>();
-        _playerCupsuleCollider = _player.GetComponent<BoxCollider2D>();
-        // プレイヤーの衝突検知スクリプトを取得
-        PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();
-        if (collisionDetector != null)
-        {
-            collisionDetector.OnPlayerCollisionStay += HandleCollisionStay;
-            collisionDetector.OnPlayerCollisionExit += HandleCollisionExit;
-        }
-
-        SetEqueipment();
-    }
-
-
     /// <summary>
     /// 通常装備のジャンプ
     /// </summary>
@@ -53,20 +36,20 @@ public class NomalBodyEquipment : BaseBodyEquipment
 
     }
 
-    private void HandleCollisionStay(Collision2D collision)
+    protected override void HandleCollisionStay(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
             IsJump = false;
             _currentJumpCount = 0;
-            _playerRigidbody.gravityScale = _equeipmentdata.InitializeGravityScale;
+            _playerRigidbody.gravityScale = _equipmentData.InitializeGravityScale;
         }
     }
-    private void HandleCollisionExit(Collision2D collision)
+    protected override void HandleCollisionExit(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            _playerRigidbody.gravityScale = _equeipmentdata.GravityScale;
+            _playerRigidbody.gravityScale = _equipmentData.GravityScale;
         }
     }
 

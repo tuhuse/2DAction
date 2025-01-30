@@ -2,41 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// 装備のインベントリ
+/// 装備の管理
 /// </summary>
 public class PlayerEquipmentManager : MonoBehaviour
 {
     [SerializeField] private BodyEquipmentData _defaultBodyEquipmentData;
     [SerializeField] private WeaponEquipmentData _defaultWeaponData;
-    [SerializeField] private SpriteRenderer _playerSprite;
-    private BodyEquipmentData _currentBodyEquipment;
-    private WeaponEquipmentData _currentWeaponEquipment;
+    [SerializeField] private SpriteRenderer[] _playerSprite;
+    private PlayerController _playerController;
+
     private const float WAIT_TIME= 0.01f;
     
 
-    public static PlayerEquipmentManager Instance { get; private set; }
-    public PlayerStatus PlayerStatus { get; private set; } = new PlayerStatus();  
     public BaseBodyEquipment BaseBodyEquipment { get; private set; }
     public BaseWeapon EquipWeapon { get; private set; }
     public bool IsChangingEquipment { get; private set; }
 
-    public BodyEquipmentData NowBodyEquipment { get; private set; }
-    public WeaponEquipmentData NowWeapon { get; private set; }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject); 
-            return;
-        }
-    }
+    public BodyEquipmentData CurrentBodyEquipment { get; private set; }
+    public WeaponEquipmentData CurrentWeaponEquipment { get; private set; }
 
     private void Start()
     {
+        _playerController = GameObject.FindFirstObjectByType<PlayerController>();
         InitializeEquipment();
     }
     /// <summary>
@@ -62,9 +49,8 @@ public class PlayerEquipmentManager : MonoBehaviour
         if (BaseBodyEquipment == null)
         {
             BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();           
-            _currentBodyEquipment = _defaultBodyEquipmentData;
-            NowBodyEquipment = _currentBodyEquipment;
-            PlayerStatus.ChangeEquipment(BaseBodyEquipment);
+            CurrentBodyEquipment = _defaultBodyEquipmentData;
+            _playerController.PlayerStatus.ChangeEquipment(BaseBodyEquipment);
         }
     }
     /// <summary>
@@ -72,36 +58,43 @@ public class PlayerEquipmentManager : MonoBehaviour
     /// </summary>
     private void ApplyBodyEquipmentType()
     {
-        Destroy(BaseBodyEquipment);
-        switch (_currentBodyEquipment.Equipment)
+        if (BaseBodyEquipment != null)
         {
-            case BodyEquipmentData.EquipmentType.Nomal:
+            Destroy(BaseBodyEquipment);
+        }
+        switch (CurrentBodyEquipment.Equipment)
+        {
+            case BodyEquipmentData.EquipmentType.Begin:
                
                 BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
                
                 break;
-            case BodyEquipmentData.EquipmentType.Strong:
+            case BodyEquipmentData.EquipmentType.Soldier:
                
                 BaseBodyEquipment = gameObject.AddComponent<StrongBodyEquipment>();
              
                 
                 break;
-            case BodyEquipmentData.EquipmentType.hobber:
+            case BodyEquipmentData.EquipmentType.Ancient:
+                break; 
+            case BodyEquipmentData.EquipmentType.Curse:
+                break; 
+            case BodyEquipmentData.EquipmentType.Sealed:
                 break;
         }
-        PlayerStatus.ChangeEquipment(BaseBodyEquipment);
+        _playerController.PlayerStatus.ChangeEquipment(BaseBodyEquipment);
     }
     /// <summary>
     /// 武器の種類に応じた処理
     /// </summary>
     private void ApplyWeaponType()
     {
-        if (_currentWeaponEquipment == null) return;
+        if (CurrentWeaponEquipment == null) return;
 
-        switch (_currentWeaponEquipment.Weapon)
+        switch (CurrentWeaponEquipment.Weapon)
         {
             case WeaponEquipmentData.WeaponType.MeleeWeapon:
-                // メレー武器用の処理
+                // 近距離武器用の処理
                 break;
             case WeaponEquipmentData.WeaponType.RangeWeapon:
                 // 遠距離武器用の処理
@@ -122,13 +115,27 @@ public class PlayerEquipmentManager : MonoBehaviour
         IsChangingEquipment = true;
         yield return new WaitForSeconds(WAIT_TIME);
 
-        _currentBodyEquipment = newEquipment;
-        _playerSprite.sprite = newEquipment.Icon;
-        NowBodyEquipment = newEquipment;
-        ApplyBodyEquipmentType();
+        CurrentBodyEquipment = newEquipment;
 
+        // nullチェック
+        if (_playerSprite == null || CurrentBodyEquipment.Icon == null)
+        {
+            Debug.LogError("PlayerSprite または Icon が null です。");
+            IsChangingEquipment = false;
+            yield break;
+        }
+
+        // 配列の長さチェック
+        int length = Mathf.Min(_playerSprite.Length, CurrentBodyEquipment.Icon.Length);
+        for (int number = 0; number < length; number++)
+        {
+            _playerSprite[number].sprite = CurrentBodyEquipment.Icon[number];
+        }
+
+        ApplyBodyEquipmentType();
         IsChangingEquipment = false;
     }
+
     /// <summary>
     /// 武器変更の待機処理
     /// </summary>
@@ -137,7 +144,7 @@ public class PlayerEquipmentManager : MonoBehaviour
         IsChangingEquipment = true;
         yield return new WaitForSeconds(WAIT_TIME);
 
-        _currentWeaponEquipment = newWeapon;
+        CurrentWeaponEquipment = newWeapon;
         ApplyWeaponType();
 
         IsChangingEquipment = false;
