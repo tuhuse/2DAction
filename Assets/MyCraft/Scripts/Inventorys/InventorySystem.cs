@@ -37,6 +37,7 @@ public class InventorySystem : MonoBehaviour
             _inventoryUI.UpdateEquipmentInventoryUI(equipment, index);
         }
     }
+   
     /// <summary>
     /// 武器をインベントリに追加する
     /// </summary>
@@ -59,7 +60,32 @@ public class InventorySystem : MonoBehaviour
             _inventoryUI.UpdateWeaponInventoryUI(equipment, index);
         }
     }
+    /// <summary>
+      /// 装備をインベントリに削除する
+      /// </summary>
+      /// <param name="equipment">武器データ</param>
+    public void RemoveBodyEquipment(BodyEquipmentData equipment)
+    {
 
+        if (_bodyEquipment.Contains(equipment))
+        {
+            _bodyEquipment.Remove(equipment);
+
+        }
+    }
+    /// <summary>
+    /// 武器をインベントリから削除する
+    /// </summary>
+    /// <param name="equipment">武器データ</param>
+    public void RemoveWeaponEquipment(WeaponEquipmentData equipment)
+    {
+
+        if (_weaponEquipment.Contains(equipment))
+        {
+            _weaponEquipment.Remove(equipment);
+
+        }
+    }
     /// <summary>
     /// インベントリに入っている装備を取得する
     /// </summary>

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 /// <summary>
 /// ƒvƒŒƒCƒ„[‚Ì“ü—Í‚ğˆ—‚·‚é
@@ -15,9 +16,10 @@ public class PlayerController : MonoBehaviour
         playerInput.HandleMove += HandleMovement;
         playerInput.HandleJump += HandleJump;
         playerInput.HandleAttack += HandleAttack;
-       
+        playerInput.HandleStop += HandleStop;
     }
 
+   
     private void HandleMovement(Vector2 direction)
     {
         if (direction.x < 0)
@@ -28,10 +30,10 @@ public class PlayerController : MonoBehaviour
         {
             _player.RightWalk();
         }
-        else
-        {
-            _player.MoveStop();
-        }
+        //else
+        //{
+        //    _player.MoveStop();
+        //}
 
         // ˆÚ“®ˆ—
     }
@@ -47,6 +49,10 @@ public class PlayerController : MonoBehaviour
         _player.Attack();
         // UŒ‚ˆ—
     }
+    private void HandleStop()
+    {
+        _player.MoveStop();
+    }
 
-    
+
 }

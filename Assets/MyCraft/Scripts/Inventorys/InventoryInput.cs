@@ -6,6 +6,8 @@ public class InventoryInput : BaseUpdatable
 {
     private EquipmentSwitcher _equipmentSwitcher;
     private int _serectNumber = 0;
+    private const float WAIT_TIME = 2f;
+    public bool _canUse { get; set; } = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,22 @@ public class InventoryInput : BaseUpdatable
                 _serectNumber=addnumber;
             }
         }
-        if (Input.GetMouseButtonDown(0))
+        if (_canUse)
         {
-            _equipmentSwitcher.EquipBodyEquipment(_serectNumber);
+            if (Input.GetMouseButtonDown(0))
+            {
+                _equipmentSwitcher.EquipBodyEquipment(_serectNumber);
+                StartCoroutine(CoolTIme(WAIT_TIME));
+            }
         }
+           
     }
-   
+   private IEnumerator CoolTIme(float waitTime)
+    {
+        _canUse = false;
+        yield return new WaitForSeconds(waitTime);
+        _canUse = true;
+    }
+    
+    
 }
