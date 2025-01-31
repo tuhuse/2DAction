@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject _equipmentSlotPrefab; // 装備スロットのプレハブ
+    [SerializeField] private GameObject _equipmentFramePrefab; // 装備フレームのプレハブ
     [SerializeField] private GameObject _weaponSlotPrefab; // 武器スロットのプレハブ
+    [SerializeField] private GameObject _weaponFramePrefab; // 武器フレームのプレハブ
     [SerializeField] private Transform[] slotParents;           // スロットを配置する親オブジェクト
     [SerializeField] private int _equipmentSlotCount = 5;    //装備スロット数
     [SerializeField] private int _weaponSlotCount = 3;     // 武器スロット数
@@ -17,6 +19,8 @@ public class InventoryUI : MonoBehaviour
 
     private List<Image> _equipmentInventorySlots = new List<Image>();
     private List<Image> _weaponInventorySlots = new List<Image>();
+    private List<GameObject> _equipmentInventoryFrame = new List<GameObject>();
+    private List<GameObject> _weaponInventoryFrame = new List<GameObject>();
 
     void Start()
     {
@@ -32,18 +36,23 @@ public class InventoryUI : MonoBehaviour
     {
         for (int number = 0; number < _equipmentSlotCount; number++)
         {
+          
+            // プレハブからふれーむを生成
+            GameObject frameSlot = Instantiate(_equipmentFramePrefab, slotParents[0]);
             // プレハブからスロットを生成
             GameObject slot = Instantiate(_equipmentSlotPrefab, slotParents[0]);
-
             // RectTransformを取得して位置を設定
             RectTransform slotTransform = slot.GetComponent<RectTransform>();
-            if (slotTransform != null)
+            RectTransform frameTransform = frameSlot.GetComponent<RectTransform>();
+            if (slotTransform != null&&frameTransform!=null)
             {
                 slotTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
+                frameTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
             }
 
             // スロットをリストに追加
             _equipmentInventorySlots.Add(slot.GetComponent<Image>());
+            _equipmentInventoryFrame.Add(frameSlot.GetComponent<GameObject>());
         }
     }
     /// <summary>
@@ -51,20 +60,30 @@ public class InventoryUI : MonoBehaviour
     /// </summary>
     private void GenerateWeaponInventorySlots()
     {
+       
         for (int number = 0; number < _weaponSlotCount; number++)
         {
+          
+            // プレハブからスロットを生成
+            GameObject frameSlot = Instantiate(_weaponFramePrefab, slotParents[1]);
             // プレハブからスロットを生成
             GameObject slot = Instantiate(_weaponSlotPrefab, slotParents[1]);
 
             // RectTransformを取得して位置を設定
             RectTransform slotTransform = slot.GetComponent<RectTransform>();
-            if (slotTransform != null)
+            RectTransform frameTransform = frameSlot.GetComponent<RectTransform>();
+
+            if (slotTransform != null&&frameTransform!=null)
             {
-                slotTransform.anchoredPosition = new Vector2(number * 150, 0); // 150間隔で配置
+                slotTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
+                frameTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
+                
             }
 
             // スロットをリストに追加
             _weaponInventorySlots.Add(slot.GetComponent<Image>());
+            // スロットをリストに追加
+            _weaponInventoryFrame.Add(frameSlot.GetComponent<GameObject>());
         }
     }
     /// <summary>
