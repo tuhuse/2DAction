@@ -18,12 +18,12 @@ MonoBehaviour:
   _jumpPower: 35
   _icon:
   - {fileID: 21300000, guid: 292ef98d612046128eff4d24b2c26e53, type: 3}
-  - {fileID: 21300002, guid: 3cdc83340f4148d4857e57b8d270068b, type: 3}
+  - {fileID: 21300038, guid: 3cb9a870c32d41c582dacebc6a0c6d39, type: 3}
   - {fileID: 21300004, guid: 3cdc83340f4148d4857e57b8d270068b, type: 3}
+  - {fileID: 21300002, guid: 3cdc83340f4148d4857e57b8d270068b, type: 3}
+  - {fileID: 21300000, guid: f6271df6229842b7950f0e2d5269a576, type: 3}
   - {fileID: 21300006, guid: bb25b4cde9b74a2d98341e9301362fc1, type: 3}
   - {fileID: 21300014, guid: 3cdc83340f4148d4857e57b8d270068b, type: 3}
   - {fileID: 21300014, guid: 3cdc83340f4148d4857e57b8d270068b, type: 3}
-  - {fileID: 21300038, guid: 3cb9a870c32d41c582dacebc6a0c6d39, type: 3}
-  - {fileID: 21300000, guid: f6271df6229842b7950f0e2d5269a576, type: 3}
   _gravityScale: 7
   _equipmentType: 1
