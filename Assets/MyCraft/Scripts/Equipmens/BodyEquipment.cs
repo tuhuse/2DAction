@@ -28,7 +28,7 @@ public class BodyEquipment : MonoBehaviour
         float playerDistance = Vector2.Distance(_player.position, this.transform.position);
         if (playerDistance < LOOK_DISTANCE)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 _inventorySystem.AddBodyEquipment(_equipmentdata);
                 Destroy(gameObject);

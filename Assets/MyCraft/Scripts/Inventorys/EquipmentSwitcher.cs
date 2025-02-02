@@ -1,72 +1,87 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 /// <summary>
-/// ƒCƒ“ƒxƒ“ƒgƒŠ‚©‚ç‘•”õ‚ğ‚·‚éˆ—
+/// ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªã‹ã‚‰è£…å‚™ã‚’ã™ã‚‹å‡¦ç†
 /// </summary>
 public class EquipmentSwitcher : MonoBehaviour
 {
     private InventorySystem _inventorySystem;
     private PlayerEquipmentManager _playerEquipment;
 
-
     private void Start()
     {
         _inventorySystem = GetComponent<InventorySystem>();
         _playerEquipment = GetComponent<PlayerEquipmentManager>();
     }
+
     /// <summary>
-    /// ‘•”õ‚ğ•ÏX‚·‚éˆ—
+    /// è£…å‚™ã‚’å¤‰æ›´ã™ã‚‹å‡¦ç†
     /// </summary>
-    /// <param name="index">‘•”õ‚·‚é•Ší‚ÌƒCƒ“ƒxƒ“ƒgƒŠ“à‚ÌƒCƒ“ƒfƒbƒNƒX</param>
-    public void EquipBodyEquipment(int index)
+    /// <param name="index">è£…å‚™ã™ã‚‹é˜²å…·ã®ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªå†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
+  public void EquipBodyEquipment(int index)
+{
+    if (_inventorySystem == null || _playerEquipment == null)
+    {
+        Debug.LogError("InventorySystem ã¾ãŸã¯ PlayerEquipmentManager ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
+        return;
+    }
+
+    // ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªã‹ã‚‰æ–°ã—ã„è£…å‚™ã‚’å–å¾—
+    BodyEquipmentData newEquipment = _inventorySystem.GetBodyEquipment(index);
+    if (newEquipment == null)
+    {
+        Debug.LogWarning("æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«è£…å‚™ãŒã‚ã‚Šã¾ã›ã‚“");
+        return;
+    }
+
+    
+    int originalIndex = index;
+
+    // å–å¾—ã—ãŸè£…å‚™ã‚’å‰Šé™¤
+    _inventorySystem.RemoveBodyEquipment(newEquipment);
+
+    // ç¾åœ¨ã®è£…å‚™ã‚’ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªã«æˆ»ã™
+    BodyEquipmentData currentEquipment = _playerEquipment.CurrentBodyEquipment;
+    if (currentEquipment != null)
+    {
+        // 2ï¸ å–å¾—ã—ãŸè£…å‚™ã®ä½ç½®ã«å…ƒã®è£…å‚™ã‚’è¿½åŠ ã™ã‚‹
+        _inventorySystem.AddBodyEquipmentAt(currentEquipment, originalIndex);
+    }
+
+    // æ–°ã—ã„è£…å‚™ã«å¤‰æ›´
+    _playerEquipment.ChangeBodyEquipment(newEquipment);
+}
+
+    /// <summary>
+    /// æ­¦å™¨è£…å‚™ã‚’å¤‰æ›´ã™ã‚‹å‡¦ç†
+    /// </summary>
+    /// <param name="index">è£…å‚™ã™ã‚‹æ­¦å™¨ã®ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªå†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
+    public void EquipWeapon(int index)
     {
         if (_inventorySystem == null || _playerEquipment == null)
         {
-            Debug.Log("‚È‚¢");
+            Debug.LogError("InventorySystem ã¾ãŸã¯ PlayerEquipmentManager ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
             return;
         }
-        // ƒCƒ“ƒxƒ“ƒgƒŠ‚©‚çV‚µ‚¢‘•”õ‚ğæ“¾
-        BodyEquipmentData newEquipment = _inventorySystem.GetBodyEquipment(index);
-       
-        if (newEquipment == null)
-        {
-            return;
-        }
-        _inventorySystem.RemoveBodyEquipment(_inventorySystem.GetBodyEquipment(index));
-        // Œ»İ‚Ì‘•”õ‚ğƒCƒ“ƒxƒ“ƒgƒŠ‚É–ß‚·
-        BodyEquipmentData currentEquipment = _playerEquipment.CurrentBodyEquipment;
-        if (currentEquipment != null)
-        {
-            _inventorySystem.AddBodyEquipment(currentEquipment);
-        }
 
-        // V‚µ‚¢‘•”õ‚É•ÏX
-        _playerEquipment.ChangeBodyEquipment(newEquipment);
-
-    }
-
-    /// <summary>
-    /// •Ší‘•”õ‚ğ•ÏX‚·‚éˆ—
-    /// </summary>
-    /// <param name="index">‘•”õ‚·‚é•Ší‚ÌƒCƒ“ƒxƒ“ƒgƒŠ“à‚ÌƒCƒ“ƒfƒbƒNƒX</param>
-    public void EquipWeapon(int index)
-    {
-        // ƒCƒ“ƒxƒ“ƒgƒŠ‚©‚çV‚µ‚¢•Ší‚ğæ“¾
+        // ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªã‹ã‚‰æ–°ã—ã„æ­¦å™¨ã‚’å–å¾—
         WeaponEquipmentData newWeapon = _inventorySystem.GetWeaponEquipment(index);
-        
         if (newWeapon == null)
         {
-            return; 
+            Debug.LogWarning("æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«æ­¦å™¨ãŒã‚ã‚Šã¾ã›ã‚“");
+            return;
         }
-        _inventorySystem.RemoveWeaponEquipment(_inventorySystem.GetWeaponEquipment(index));
-        // Œ»İ‚Ì•Ší‚ğƒCƒ“ƒxƒ“ƒgƒŠ‚É–ß‚·
-        WeaponEquipmentData currentWeapon = _playerEquipment.CurrentWeaponEquipment;
 
+        // å–å¾—ã—ãŸæ­¦å™¨ã‚’å‰Šé™¤
+        _inventorySystem.RemoveWeaponEquipment(newWeapon);
+
+        // ç¾åœ¨ã®æ­¦å™¨ã‚’ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒªã«æˆ»ã™
+        WeaponEquipmentData currentWeapon = _playerEquipment.CurrentWeaponEquipment;
         if (currentWeapon != null)
         {
             _inventorySystem.AddWeaponEquipment(currentWeapon);
         }
 
-        // V‚µ‚¢•Ší‚É•ÏX
+        // æ–°ã—ã„æ­¦å™¨ã«å¤‰æ›´
         _playerEquipment.ChangeWeaponEquipment(newWeapon);
     }
 }

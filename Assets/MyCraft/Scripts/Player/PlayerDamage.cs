@@ -11,7 +11,7 @@ public class PlayerDamage : MonoBehaviour
     void Start()
     {
         _standEnemy = GameObject.FindGameObjectWithTag("StandEnemy");
-
+        _playerController = GetComponent<PlayerController>();
         PlayerCollisionDetector collisionDetector = GetComponent<PlayerCollisionDetector>();
         if (collisionDetector != null)
         {
@@ -26,21 +26,7 @@ public class PlayerDamage : MonoBehaviour
 
     private void HandleCollisionEnter(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("SoldierEnemy"))
-        {
-            // ダメージを受けた処理
-           _playerController.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
-        }
-        if (collision.gameObject.CompareTag("StandEnemy"))
-        {
-            // ダメージを受けた処理
-            _playerController.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<StandEnemyAttack>().AttackPower);
-        }
-        if (collision.gameObject.layer == THORN_LAYER_NUBER)
-        {
-            // ダメージを受けた処理
-            _playerController.PlayerStatus.TakeDamage(_thornDamage);
-        }
+        
         if (collision.gameObject.CompareTag("ClearFlag"))
         {
             SceneGameManager.Instance.OnGameClear();
@@ -52,9 +38,20 @@ public class PlayerDamage : MonoBehaviour
     }
     private void HandleTriggerEnter(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("StandEnemy"))
+        if (collider.gameObject.CompareTag("StandEnemyWeapon"))
         {
             _playerController.PlayerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
+
+        }
+        if (collider.gameObject.CompareTag("SoldierEnemy"))
+        {
+            // ダメージを受けた処理
+            _playerController.PlayerStatus.TakeDamage(collider.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
+        }
+        if (collider.gameObject.layer == THORN_LAYER_NUBER)
+        {
+            // ダメージを受けた処理
+            _playerController.PlayerStatus.TakeDamage(_thornDamage);
         }
     }
    

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
@@ -5,12 +6,14 @@ using UnityEngine;
 /// </summary>
 public class InventorySystem : MonoBehaviour
 {
+    [SerializeField]
     private List<BodyEquipmentData> _bodyEquipment = new List<BodyEquipmentData>();
+    [SerializeField]
     private List<WeaponEquipmentData> _weaponEquipment = new List<WeaponEquipmentData>();
     private InventoryUI _inventoryUI;
 
-    private int maxBodyEquipmentSlots = 10;
-    private int maxWeaponEquipmentSlots = 5;
+    private int maxBodyEquipmentSlots = 5;
+    private int maxWeaponEquipmentSlots = 3;
     private void Awake()
     {
         _inventoryUI = GetComponent<InventoryUI>();
@@ -34,7 +37,7 @@ public class InventorySystem : MonoBehaviour
             int index = _bodyEquipment.Count - 1;
 
             // UIを更新
-            _inventoryUI.UpdateEquipmentInventoryUI(equipment, index);
+            _inventoryUI.UpdateAddEquipmentInventoryUI(equipment, index);
         }
     }
    
@@ -57,7 +60,7 @@ public class InventorySystem : MonoBehaviour
             int index = _weaponEquipment.Count - 1;
 
             // UIを更新
-            _inventoryUI.UpdateWeaponInventoryUI(equipment, index);
+            _inventoryUI.UpdateAddWeaponInventoryUI(equipment, index);
         }
     }
     /// <summary>
@@ -70,7 +73,9 @@ public class InventorySystem : MonoBehaviour
         if (_bodyEquipment.Contains(equipment))
         {
             _bodyEquipment.Remove(equipment);
-
+            // 追加されたインデックスを取得
+            int index = _bodyEquipment.Count - 1;
+            //_inventoryUI.UpdateRemoveEquipmentInventoryUI(equipment, index);
         }
     }
     /// <summary>
@@ -83,9 +88,25 @@ public class InventorySystem : MonoBehaviour
         if (_weaponEquipment.Contains(equipment))
         {
             _weaponEquipment.Remove(equipment);
-
+            // 追加されたインデックスを取得
+            int index = _weaponEquipment.Count - 1;
+            //_inventoryUI.UpdateRemoveWeaponInventoryUI(equipment, index);
         }
     }
+    public void AddBodyEquipmentAt(BodyEquipmentData equipment, int index)
+    {
+        if (index < 0 || index > _bodyEquipment.Count)
+        {
+            Debug.LogWarning("無効なインデックスです");
+            return;
+        }
+
+        _bodyEquipment.Insert(index, equipment);
+
+        // UI を正しい位置で更新
+        _inventoryUI.UpdateAddEquipmentInventoryUI(equipment, index);
+    }
+
     /// <summary>
     /// インベントリに入っている装備を取得する
     /// </summary>

@@ -23,8 +23,7 @@ public class InventoryInput : BaseUpdatable
             }
         }
         if (_canUse)
-        {
-            if (Input.GetMouseButtonDown(0))
+        {    if (Input.GetMouseButtonDown(0))
             {
                 _equipmentSwitcher.EquipBodyEquipment(_serectNumber);
                 StartCoroutine(CoolTIme(WAIT_TIME));

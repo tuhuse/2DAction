@@ -14,7 +14,7 @@ public class PlayerStatus
     //public float DamageMultiplier => _currentBodyEquipment != null ? _currentBodyEquipment.DamageMultiplier : 1f;
 
     // 現在の体力
-    private int currentHealth;
+    private int _currentHealth;
     // 装備による補正値（プロパティで動的取得）
     public int ArmorDefense {
         get
@@ -29,12 +29,12 @@ public class PlayerStatus
     // 初期化処理
     public void InitializeBodyEquipment(BaseBodyEquipment initialEquipment)
     {
-        currentHealth = BASE_HEALTH;
+        _currentHealth = BASE_HEALTH;
         _currentBodyEquipment = initialEquipment;
     }
     public void InitializeHealthBar(PlayerHealthBar healthBar)
     {
-        currentHealth = BASE_HEALTH;
+        _currentHealth = BASE_HEALTH;
         _playerHealthBar = healthBar;
 
         if (healthBar != null)
@@ -61,8 +61,8 @@ public class PlayerStatus
             effectiveDamage = 1;
         }
         // 体力を減少
-        currentHealth -= Mathf.RoundToInt(effectiveDamage);
-        Debug.Log($"ダメージ受けた: {Mathf.RoundToInt(effectiveDamage)} 現在HP: {currentHealth}");
+        _currentHealth -= Mathf.RoundToInt(effectiveDamage);
+        Debug.Log($"ダメージ受けた: {Mathf.RoundToInt(effectiveDamage)} 現在HP: {_currentHealth}");
         GetCurrentHealth();
         if (_playerHealthBar != null)
         {
@@ -70,7 +70,7 @@ public class PlayerStatus
         }
 
         // 体力が0以下なら死亡処理
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -85,6 +85,6 @@ public class PlayerStatus
     // 現在の体力取得
     public int GetCurrentHealth()
     {
-        return currentHealth;
+        return _currentHealth;
     }
 }

@@ -37,11 +37,11 @@ public class FollowSoldierEnemy : BaseEnemy
         if (_sense.IsAttack)
         {
             Attack();   // çUåÇ
-            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
+            //_enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
         }
         else
         {
-            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
+            //_enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
         }
         
         Sense();//íTím

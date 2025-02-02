@@ -19,7 +19,7 @@ public class FollowStandEnemy : BaseEnemy
         if (_sense.IsAttack)
         {
             Attack();
-            _enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
+            //_enemyStateController.ChangeState(EnemyStateController.EnemyState.Attacking);
         }
         Sense();
     }

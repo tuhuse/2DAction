@@ -8,7 +8,7 @@ public class SoldierEnemyAttack : BaseEnemyAttack
 {
     private void Start()
     {
-        AttackPower = 10;
+        AttackPower = 15;
     }
     public override void EnemyAttack()
     {

@@ -6,12 +6,12 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour
 {
 
-    protected EnemyStateController _enemyStateController;
+    //protected EnemyStateController _enemyStateController;
     protected BaseEnemyMove _move;
     protected BaseEnemyJump _jump;
     protected BaseEnemyAttack _attack;
     protected BaseSensePlayer _sense;
-    
+    protected EnemyController _enemyController;
     public int Defence { get;set; }
     public void SetMovement(BaseEnemyMove move)
     {
@@ -78,12 +78,22 @@ public abstract class BaseEnemy : MonoBehaviour
     public abstract void EnemyUpdate();
     private void OnEnable()
     {
-            EnemyController.Instance.EnemyRegister(this);
-        _enemyStateController = GetComponent<EnemyStateController>();
+        if (_enemyController == null)
+        {
+            _enemyController = GameObject.FindFirstObjectByType<EnemyController>();
+        }
+
+        _enemyController.EnemyRegister(this);
+        //_enemyStateController = GetComponent<EnemyStateController>();
     }
     private void OnDisable()
     {
-            EnemyController.Instance.EnemyUnregister(this);  
+        if (_enemyController == null)
+        {
+            _enemyController = GameObject.FindFirstObjectByType<EnemyController>();
+        }
+        
+        _enemyController.EnemyUnregister(this);  
     }
 
 }

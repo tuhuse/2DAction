@@ -17,14 +17,14 @@ public class InventoryUI : MonoBehaviour
 
     private const float SLOT_SPACING = 150f;
 
-    private List<Image> _equipmentInventorySlots = new List<Image>();
-    private List<Image> _weaponInventorySlots = new List<Image>();
+   [SerializeField] private List<Image> _equipmentInventorySlots = new List<Image>();
+   [SerializeField] private List<Image> _weaponInventorySlots = new List<Image>();
     private List<GameObject> _equipmentInventoryFrame = new List<GameObject>();
     private List<GameObject> _weaponInventoryFrame = new List<GameObject>();
 
     void Start()
     {
-       
+
         GenerateEqupmentInventorySlots();
         GenerateWeaponInventorySlots();
     }
@@ -36,7 +36,7 @@ public class InventoryUI : MonoBehaviour
     {
         for (int number = 0; number < _equipmentSlotCount; number++)
         {
-          
+
             // プレハブからふれーむを生成
             GameObject frameSlot = Instantiate(_equipmentFramePrefab, slotParents[0]);
             // プレハブからスロットを生成
@@ -44,7 +44,7 @@ public class InventoryUI : MonoBehaviour
             // RectTransformを取得して位置を設定
             RectTransform slotTransform = slot.GetComponent<RectTransform>();
             RectTransform frameTransform = frameSlot.GetComponent<RectTransform>();
-            if (slotTransform != null&&frameTransform!=null)
+            if (slotTransform != null && frameTransform != null)
             {
                 slotTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
                 frameTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
@@ -52,7 +52,8 @@ public class InventoryUI : MonoBehaviour
 
             // スロットをリストに追加
             _equipmentInventorySlots.Add(slot.GetComponent<Image>());
-            _equipmentInventoryFrame.Add(frameSlot.GetComponent<GameObject>());
+            _equipmentInventoryFrame.Add(frameSlot);
+
         }
     }
     /// <summary>
@@ -60,10 +61,10 @@ public class InventoryUI : MonoBehaviour
     /// </summary>
     private void GenerateWeaponInventorySlots()
     {
-       
+
         for (int number = 0; number < _weaponSlotCount; number++)
         {
-          
+
             // プレハブからスロットを生成
             GameObject frameSlot = Instantiate(_weaponFramePrefab, slotParents[1]);
             // プレハブからスロットを生成
@@ -73,38 +74,69 @@ public class InventoryUI : MonoBehaviour
             RectTransform slotTransform = slot.GetComponent<RectTransform>();
             RectTransform frameTransform = frameSlot.GetComponent<RectTransform>();
 
-            if (slotTransform != null&&frameTransform!=null)
+            if (slotTransform != null && frameTransform != null)
             {
                 slotTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
                 frameTransform.anchoredPosition = new Vector2(number * SLOT_SPACING, 0); // 150間隔で配置
-                
+
             }
 
             // スロットをリストに追加
             _weaponInventorySlots.Add(slot.GetComponent<Image>());
             // スロットをリストに追加
-            _weaponInventoryFrame.Add(frameSlot.GetComponent<GameObject>());
+            _weaponInventoryFrame.Add(frameSlot);
         }
     }
     /// <summary>
-    /// 装備変更した時のUIの更新
+    /// 装備入手時のUIの更新
     /// </summary>
     /// <param name="bodyEquipmentData">装備データ</param>
     /// <param name="index">インベント番号</param>
-    public void UpdateEquipmentInventoryUI(BodyEquipmentData bodyEquipmentData,int index)
+    public void UpdateAddEquipmentInventoryUI(BodyEquipmentData bodyEquipmentData, int index)
     {
-        if (index < 0 || index >= _equipmentInventorySlots.Count) return;
-        _equipmentInventorySlots[index].sprite = bodyEquipmentData.Icon[0];
+        if (index < 0 || index >= _equipmentInventorySlots.Count)
+        {
+            return;
+        }
+        _equipmentInventorySlots[index].sprite = bodyEquipmentData.Icon[8];
     }
     /// <summary>
-    /// 武器変更した時のUIの更新
+     /// 装備変更した時のUIの更新
+     /// </summary>
+     /// <param name="bodyEquipmentData">装備データ</param>
+     /// <param name="index">インベント番号</param>
+    //public void UpdateRemoveEquipmentInventoryUI(BodyEquipmentData bodyEquipmentData, int index)
+    //{
+    //    if (index < 0 || index >= _equipmentInventorySlots.Count)
+    //    {
+    //        return;
+    //    }
+    //    _equipmentInventorySlots[index].sprite =null;
+    //}
+
+    /// <summary>
+    /// 武器入手時のUIの更新
     /// </summary>
     /// <param name="weaponEquipmentData">武器データ</param>
     /// <param name="index">インベント番号</param>
-    public void UpdateWeaponInventoryUI(WeaponEquipmentData weaponEquipmentData, int index)
+    public void UpdateAddWeaponInventoryUI(WeaponEquipmentData weaponEquipmentData, int index)
     {
         if (index < 0 || index >= _weaponInventorySlots.Count) return;
         _weaponInventorySlots[index].sprite = weaponEquipmentData.Icon;
     }
 
+    /// <summary>
+    /// 武器変更した時のUIの更新
+    /// </summary>
+    /// <param name="weaponEquipmentData">装備データ</param>
+    /// <param name="index">インベント番号</param>
+    //public void UpdateRemoveWeaponInventoryUI(WeaponEquipmentData weaponEquipmentData, int index)
+    //{
+    //    if (index < 0 || index >= _equipmentInventorySlots.Count)
+    //    {
+    //        return;
+    //    }
+    //    _weaponInventorySlots[index].sprite = null;
+
+    //}
 }

@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Recorder.Input;
 using UnityEngine;
 /// <summary>
 /// プレイヤーのインプット読み取り

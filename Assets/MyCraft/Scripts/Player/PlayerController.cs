@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     {
         _player = GetComponent<Player>();
         PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
-
         // ƒCƒxƒ“ƒg‚É‰‚¶‚½“®ì‚ğ“o˜^
         playerInput.HandleMove += HandleMovement;
         playerInput.HandleJump += HandleJump;

@@ -25,5 +25,6 @@ MonoBehaviour:
   - {fileID: 21300006, guid: f8fadf2ff6264dad82d9501bccae3b4e, type: 3}
   - {fileID: 21300014, guid: e6ed2f50fd8042a59d44c1660bfd1880, type: 3}
   - {fileID: 21300014, guid: e6ed2f50fd8042a59d44c1660bfd1880, type: 3}
+  - {fileID: 21300000, guid: c8f4acc43ca54a16961ef6dce453ef0e, type: 3}
   _gravityScale: 6
   _equipmentType: 1

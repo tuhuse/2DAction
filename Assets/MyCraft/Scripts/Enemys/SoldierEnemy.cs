@@ -12,7 +12,7 @@ public class SoldierEnemy : BaseEnemy
 
         // ‹ßÚUŒ‚‚ğİ’è
         SetAttack(gameObject.GetComponent<SoldierEnemyAttack>());
-        _enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
+        //_enemyStateController.ChangeState(EnemyStateController.EnemyState.Walking);
     }
     public override void EnemyUpdate()
     {
