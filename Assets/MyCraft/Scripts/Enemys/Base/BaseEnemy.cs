@@ -11,7 +11,6 @@ public abstract class BaseEnemy : MonoBehaviour
     protected BaseEnemyJump _jump;
     protected BaseEnemyAttack _attack;
     protected BaseSensePlayer _sense;
-    protected EnemyController _enemyController;
     public int Defence { get;set; }
     public void SetMovement(BaseEnemyMove move)
     {
@@ -78,22 +77,13 @@ public abstract class BaseEnemy : MonoBehaviour
     public abstract void EnemyUpdate();
     private void OnEnable()
     {
-        if (_enemyController == null)
-        {
-            _enemyController = GameObject.FindFirstObjectByType<EnemyController>();
-        }
-
-        _enemyController.EnemyRegister(this);
+       
+        EnemyController.Instance.EnemyRegister(this);
         //_enemyStateController = GetComponent<EnemyStateController>();
     }
     private void OnDisable()
     {
-        if (_enemyController == null)
-        {
-            _enemyController = GameObject.FindFirstObjectByType<EnemyController>();
-        }
-        
-        _enemyController.EnemyUnregister(this);  
+        EnemyController.Instance.EnemyUnregister(this);  
     }
 
 }

@@ -9,7 +9,19 @@ public class EnemyController : BaseUpdatable
 
     [SerializeField] private float walkSpeed = 2f;
 
-   
+   public static EnemyController Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
     public void EnemyRegister(BaseEnemy baseEnemy)
     {
         if (!_baseEnemy.Contains(baseEnemy))
