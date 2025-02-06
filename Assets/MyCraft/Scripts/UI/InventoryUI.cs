@@ -98,6 +98,10 @@ public class InventoryUI : MonoBehaviour
         {
             return;
         }
+        if (!_equipmentInventorySlots[index].enabled)
+        {
+            _equipmentInventorySlots[index].enabled = true;
+        }
         _equipmentInventorySlots[index].sprite = bodyEquipmentData.Icon[8];
     }
     /// <summary>
@@ -121,7 +125,14 @@ public class InventoryUI : MonoBehaviour
     /// <param name="index">ÉCÉìÉxÉìÉgî‘çÜ</param>
     public void UpdateAddWeaponInventoryUI(WeaponEquipmentData weaponEquipmentData, int index)
     {
-        if (index < 0 || index >= _weaponInventorySlots.Count) return;
+        if (index < 0 || index >= _weaponInventorySlots.Count)
+        {
+            return;
+        }
+        if (!_weaponInventorySlots[index].enabled)
+        {
+            _weaponInventorySlots[index].enabled = true;
+        }
         _weaponInventorySlots[index].sprite = weaponEquipmentData.Icon;
     }
 
