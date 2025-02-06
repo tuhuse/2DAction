@@ -7,7 +7,6 @@ public class EnemyController : BaseUpdatable
 {
    [SerializeField] private List<BaseEnemy> _baseEnemy = new List<BaseEnemy>();
 
-    [SerializeField] private float walkSpeed = 2f;
 
    public static EnemyController Instance { get; private set; }
     private void Awake()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationInput : BaseUpdatable
+public class AnimationInput : MonoBehaviour
 {
     private PlayerAnimationController _playerAnimator;
     public string WalkPadInput => "Horizontal"; // デフォルト設定の軸名を使用
@@ -17,8 +17,5 @@ public class AnimationInput : BaseUpdatable
     {
         _playerAnimator = FindFirstObjectByType<PlayerAnimationController>();
     }
-    public override void OnUpdate()
-    {
-        _playerAnimator.UpdateAnimation();
-    }
+    
 }

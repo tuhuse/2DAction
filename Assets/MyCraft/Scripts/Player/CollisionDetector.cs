@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCollisionDetector : MonoBehaviour
+public class CollisionDetector : MonoBehaviour
 {
    
     public delegate void CollisionStayEventHandler(Collision2D collision);
@@ -19,14 +19,14 @@ public class PlayerCollisionDetector : MonoBehaviour
             OnPlayerCollisionStay.Invoke(collision); // 衝突情報をイベントとして通知
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        OnPlayerCollisionEnter.Invoke(collision);   
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        OnPlayerTriggerEnter.Invoke(collision);
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    OnPlayerCollisionEnter.Invoke(collision);   
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    OnPlayerTriggerEnter.Invoke(collision);
+    //}
 
     private void OnCollisionExit2D(Collision2D collision)
     {

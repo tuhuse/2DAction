@@ -22,7 +22,7 @@ public abstract class BaseBodyEquipment : MonoBehaviour
 
         _equipmentData = _player.GetComponent<Player>().GetBodyEquipmentData();
         // プレイヤーの衝突検知スクリプトを取得
-        PlayerCollisionDetector collisionDetector = _player.GetComponent<PlayerCollisionDetector>();
+        CollisionDetector collisionDetector = _player.GetComponent<CollisionDetector>();
         if (collisionDetector != null)
         {
             collisionDetector.OnPlayerCollisionStay += HandleCollisionStay;

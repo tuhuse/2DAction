@@ -5,56 +5,46 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour
 {
     private PlayerController _playerController;
-    private GameObject _standEnemy;
+    [SerializeField]private GameObject _player;
+    [TagSelector, SerializeField] private string _soldierEnemyTag;
+    [TagSelector, SerializeField] private string _standEnemyTag;
+    [TagSelector, SerializeField] private string _clearTag;
+    [TagSelector, SerializeField] private string _deathTag;
     private const int THORN_LAYER_NUBER = 7;
     private int _thornDamage = 10;
     void Start()
     {
-        _standEnemy = GameObject.FindGameObjectWithTag("StandEnemy");
-        _playerController = GetComponent<PlayerController>();
-        PlayerCollisionDetector collisionDetector = GetComponent<PlayerCollisionDetector>();
-        if (collisionDetector != null)
-        {
-            collisionDetector.OnPlayerCollisionEnter += HandleCollisionEnter;
-        }
-        PlayerCollisionDetector triggerDetector = GetComponent<PlayerCollisionDetector>();
-        if (collisionDetector != null)
-        {
-            triggerDetector.OnPlayerTriggerEnter += HandleTriggerEnter;
-        }
-    }
+       
+        _playerController = _player.GetComponent<PlayerController>();
 
-    private void HandleCollisionEnter(Collision2D collision)
-    {
-        
-        if (collision.gameObject.CompareTag("ClearFlag"))
-        {
-            SceneGameManager.Instance.OnGameClear();
-        }
-        if (collision.gameObject.CompareTag("Death"))
-        {
-            SceneGameManager.Instance.OnGameOver();
-        }
+       
     }
-    private void HandleTriggerEnter(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collider.gameObject.CompareTag("StandEnemyWeapon"))
+        if (collision.gameObject.CompareTag(_standEnemyTag))
         {
-            _playerController.PlayerStatus.TakeDamage(_standEnemy.GetComponent<StandEnemyAttack>().AttackPower);
+            _playerController.PlayerStatus.TakeDamage(collision.GetComponent<StandEnemyAttack>().AttackPower);
 
         }
-        if (collider.gameObject.CompareTag("SoldierEnemy"))
+
+        if (collision.gameObject.CompareTag(_soldierEnemyTag))
         {
             // ダメージを受けた処理
-            _playerController.PlayerStatus.TakeDamage(collider.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
+            _playerController.PlayerStatus.TakeDamage(collision.gameObject.GetComponent<SoldierEnemyAttack>().AttackPower);
         }
-        if (collider.gameObject.layer == THORN_LAYER_NUBER)
+        if (collision.gameObject.layer == THORN_LAYER_NUBER)
         {
             // ダメージを受けた処理
             _playerController.PlayerStatus.TakeDamage(_thornDamage);
         }
+        if (collision.gameObject.CompareTag(_clearTag))
+        {
+            SceneGameManager.Instance.OnGameClear();
+        }
+        if (collision.gameObject.CompareTag(_deathTag))
+        {
+            SceneGameManager.Instance.OnGameOver();
+        }
     }
-   
-    
 
 }

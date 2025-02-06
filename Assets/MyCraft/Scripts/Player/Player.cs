@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private BaseWeapon _weapon;
     private BaseDistanceEnemy _distanceEnemy;
     private PlayerEquipmentManager _equipmentManager;
+
+    public BaseDistanceEnemy DistanceEnemy => _distanceEnemy;
     private BaseBodyEquipment BaseBodyEquipment => _equipmentManager.BaseBodyEquipment;
   
     private void Start()

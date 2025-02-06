@@ -190,6 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480b4a3ced1cc04a9b0157a89cc01b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTag: Player
+  _sordTag: Sord
+  knockbackForce: 10
 --- !u!114 &6149255678850552689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480b4a3ced1cc04a9b0157a89cc01b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTag: Player
+  _sordTag: Sord
+  knockbackForce: 10
 --- !u!114 &3233217920221395745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,6 +1890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480b4a3ced1cc04a9b0157a89cc01b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTag: Player
+  _sordTag: Sord
+  knockbackForce: 10
 --- !u!114 &872892588490443293
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,37 +4,48 @@ using UnityEngine;
 
 public class PlayerAnimationController :MonoBehaviour
 {
-
+   [SerializeField] private Player _player;
     private Animator _playerAnimator;
-    private AnimationInput _animationInput;
-    [SerializeField] private RuntimeAnimatorController _stayAnimator;
-    [SerializeField] private RuntimeAnimatorController _walkAnimator;
-    [SerializeField] private RuntimeAnimatorController _runAnimator;
-    [SerializeField] private RuntimeAnimatorController _attackAnimator;
-    [SerializeField] private RuntimeAnimatorController _jumpAnimator;
-    [SerializeField] private RuntimeAnimatorController _deathAnimator;
-    [SerializeField] private RuntimeAnimatorController _winnerAnimator;
     //[SerializeField] private RuntimeAnimatorController _skillAnimator;
     
    private void Start()
     {
         _playerAnimator = GetComponent<Animator>();
-        _animationInput = FindFirstObjectByType<AnimationInput>();
+        PlayerInput playerInput = FindAnyObjectByType<PlayerInput>();
+        // イベントに応じた動作を登録
+        playerInput.HandleMove += HandleMovement;
+        playerInput.HandleJump += HandleJump;
+        playerInput.HandleAttack += HandleAttack;
+        playerInput.HandleStop += HandleStop;
     }
 
-    public void UpdateAnimation()
+    private void HandleMovement(Vector2 direction)
     {
-        if (_animationInput.IsWalkAnimation)
+        _playerAnimator.SetBool("Walk", true);
+        // 移動処理
+    }
+
+    private void HandleJump()
+    {
+        _playerAnimator.SetBool("Walk", false);
+        _playerAnimator.SetTrigger("Jump");
+
+        // ジャンプ処理
+    }
+
+    private void HandleAttack()
+    {
+        if (_player.DistanceEnemy.CanAttack)
         {
-            _playerAnimator.runtimeAnimatorController = _walkAnimator;
+            _playerAnimator.SetBool("Walk", false);
+            _playerAnimator.SetTrigger("Attack");
         }
-        if (_animationInput.IsJumpAnimation)
-        {
-            _playerAnimator.runtimeAnimatorController = _jumpAnimator;
-        }
-        if (_animationInput.IsStayAnimation)
-        {
-            _playerAnimator.runtimeAnimatorController = _stayAnimator;
-        }
+      
+      
+        // 攻撃処理
+    }
+    private void HandleStop()
+    {
+        _playerAnimator.SetBool("Walk", false);
     }
 }
