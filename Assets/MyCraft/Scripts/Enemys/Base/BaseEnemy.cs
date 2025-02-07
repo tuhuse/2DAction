@@ -34,6 +34,7 @@ public abstract class BaseEnemy : MonoBehaviour
         {
             _move.EnemyMove();
         }
+        
        
     }
     public void FollowLeftMove()

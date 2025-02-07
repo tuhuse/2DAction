@@ -37,15 +37,9 @@ public class Player : MonoBehaviour
         EnsureEquipmentInitialized();
         if (BaseBodyEquipment != null)
         {
-            if (!_equipmentManager.IsChangingEquipment)
-            {
+         
                 BaseBodyEquipment.RightWalk();
                 this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else
-            {
-                BaseBodyEquipment.StopMove();
-            }
         }
     }
 
@@ -56,15 +50,9 @@ public class Player : MonoBehaviour
         if (BaseBodyEquipment != null)
         {
            
-            if (!_equipmentManager.IsChangingEquipment)
-            {
+           
                 BaseBodyEquipment.LeftWalk();
                 this.transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            else
-            {
-                BaseBodyEquipment.StopMove();
-            }
         }
      
     }

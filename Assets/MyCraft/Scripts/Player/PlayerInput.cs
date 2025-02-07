@@ -59,17 +59,19 @@ public class PlayerInput : BaseUpdatable
 
         if (CanLeftMove)
         {
-            if (_handleMove != null)
+            if (_handleMove == null)
             {
-                _handleMove.Invoke(new Vector2(-1, 0));
-            }            
+                return;
+            }
+            _handleMove.Invoke(Vector2.left);
         }
         else if (CanRightMove)
         {
-            if (_handleMove != null)
+            if (_handleMove == null)
             {
-                _handleMove.Invoke(new Vector2(1, 0));
+                return;
             }
+            _handleMove.Invoke(Vector2.right);
         }
         else
         {

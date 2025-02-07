@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// インベントリ追加・取得
+/// インベントリの管理を行うシステム
+/// 装備や武器の追加・削除・取得の機能をもっている
 /// </summary>
 public class InventorySystem : MonoBehaviour
 {
-    [SerializeField]
     private List<BodyEquipmentData> _bodyEquipment = new List<BodyEquipmentData>();
-    [SerializeField]
     private List<WeaponEquipmentData> _weaponEquipment = new List<WeaponEquipmentData>();
-    private InventoryUI _inventoryUI;
+    private InventoryUI _inventoryUI=default;
 
-    private int maxBodyEquipmentSlots = 5;
-    private int maxWeaponEquipmentSlots = 3;
-    private void Awake()
+    private int _maxBodyEquipmentSlots = 5;
+    private int _maxWeaponEquipmentSlots = 3;
+    private void Start()
     {
         _inventoryUI = GetComponent<InventoryUI>();
     }
@@ -24,9 +23,8 @@ public class InventorySystem : MonoBehaviour
     /// <param name="equipment">装備データ</param>
     public void AddBodyEquipment(BodyEquipmentData equipment)
     {
-        if (_bodyEquipment.Count >= maxBodyEquipmentSlots)
+        if (_bodyEquipment.Count >= _maxBodyEquipmentSlots)
         {
-            Debug.Log("入りきらない");
             return;
         }
         if (!_bodyEquipment.Contains(equipment))
@@ -47,9 +45,8 @@ public class InventorySystem : MonoBehaviour
     /// <param name="equipment">武器データ</param>
     public void AddWeaponEquipment(WeaponEquipmentData equipment)
     {
-        if (_weaponEquipment.Count >= maxWeaponEquipmentSlots)
+        if (_weaponEquipment.Count >= _maxWeaponEquipmentSlots)
         {
-            Debug.Log("入りきらない");
             return;
         }
         if (!_weaponEquipment.Contains(equipment))
@@ -64,7 +61,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
     /// <summary>
-      /// 装備をインベントリに削除する
+      /// 装備をインベントリから削除する
       /// </summary>
       /// <param name="equipment">武器データ</param>
     public void RemoveBodyEquipment(BodyEquipmentData equipment)
@@ -93,48 +90,48 @@ public class InventorySystem : MonoBehaviour
             //_inventoryUI.UpdateRemoveWeaponInventoryUI(equipment, index);
         }
     }
+    /// <summary>
+    /// 指定したインベントリスロットに装備データを追加する。
+    /// </summary>
+    /// <param name="equipment">装備データ</param>
+    /// <param name="index">インベントリ番号</param>
     public void AddBodyEquipmentAt(BodyEquipmentData equipment, int index)
     {
         if (index < 0 || index > _bodyEquipment.Count)
         {
-            Debug.LogWarning("無効なインデックスです");
             return;
         }
 
         _bodyEquipment.Insert(index, equipment);
 
-        // UI を正しい位置で更新
+        // UIを更新
         _inventoryUI.UpdateAddEquipmentInventoryUI(equipment, index);
     }
 
     /// <summary>
-    /// インベントリに入っている装備を取得する
+    /// 指定したインベントリスロットに入っている装備データを取得する
     /// </summary>
     /// <param name="index">装備インベントリ番号</param>
-    /// <returns></returns>
+    /// <returns>装備データ</returns>
     public BodyEquipmentData GetBodyEquipment(int index)
     {
         if (index >= 0 && index < _bodyEquipment.Count)
         {
             return _bodyEquipment[index];
         }
-
-        Debug.Log("nanimohaittenai");
         return null;
     }
     /// <summary>
-    /// インベントリに入っている武器を取得する
+    /// 指定したインベントリスロットに入っている武器データを取得する
     /// </summary>
     /// <param name="index">武器インベントリ番号</param>
-    /// <returns></returns>
+    /// <returns>武器のデータ</returns>
     public WeaponEquipmentData GetWeaponEquipment(int index)
     {
         if (index >= 0 && index < _weaponEquipment.Count)
         {
             return _weaponEquipment[index];
         }
-
-        Debug.Log("nanimohaittenai");
         return null;
     }
 }

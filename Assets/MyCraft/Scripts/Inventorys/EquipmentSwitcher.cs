@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 /// <summary>
-/// インベントリから装備をする処理
+/// インベントリ内の装備をプレイヤーに適用するクラス
+/// 装備を変更すると、現在の装備がインベントリに戻り、新しい装備プレイヤーに適用させる
 /// </summary>
 public class EquipmentSwitcher : MonoBehaviour
 {
-    private InventorySystem _inventorySystem;
-    private PlayerEquipmentManager _playerEquipment;
+    private InventorySystem _inventorySystem=default;
+    private PlayerEquipmentManager _playerEquipment=default;
 
     private void Start()
     {
@@ -15,25 +16,21 @@ public class EquipmentSwitcher : MonoBehaviour
 
     /// <summary>
     /// 装備を変更する処理
+    /// インベントリ内の指定された装備データをプレイヤーに適用し、現在の装備データをインベントリに戻す
     /// </summary>
     /// <param name="index">装備する防具のインベントリ内のインデックス</param>
-  public void EquipBodyEquipment(int index)
+    public void EquipBodyEquipment(int index)
 {
     if (_inventorySystem == null || _playerEquipment == null)
     {
-        Debug.LogError("InventorySystem または PlayerEquipmentManager が見つかりません");
         return;
     }
-
     // インベントリから新しい装備を取得
     BodyEquipmentData newEquipment = _inventorySystem.GetBodyEquipment(index);
     if (newEquipment == null)
     {
-        Debug.LogWarning("指定されたインデックスに装備がありません");
         return;
-    }
-
-    
+    }   
     int originalIndex = index;
 
     // 取得した装備を削除
@@ -43,7 +40,7 @@ public class EquipmentSwitcher : MonoBehaviour
     BodyEquipmentData currentEquipment = _playerEquipment.CurrentBodyEquipment;
     if (currentEquipment != null)
     {
-        // 2️ 取得した装備の位置に元の装備を追加する
+        //取得した装備の位置に元の装備を追加する
         _inventorySystem.AddBodyEquipmentAt(currentEquipment, originalIndex);
     }
 
@@ -53,13 +50,13 @@ public class EquipmentSwitcher : MonoBehaviour
 
     /// <summary>
     /// 武器装備を変更する処理
+    /// インベントリ内の指定された武器データをプレイヤーに適用し、現在の武器データをインベントリに戻す
     /// </summary>
     /// <param name="index">装備する武器のインベントリ内のインデックス</param>
     public void EquipWeapon(int index)
     {
         if (_inventorySystem == null || _playerEquipment == null)
         {
-            Debug.LogError("InventorySystem または PlayerEquipmentManager が見つかりません");
             return;
         }
 
@@ -67,7 +64,6 @@ public class EquipmentSwitcher : MonoBehaviour
         WeaponEquipmentData newWeapon = _inventorySystem.GetWeaponEquipment(index);
         if (newWeapon == null)
         {
-            Debug.LogWarning("指定されたインデックスに武器がありません");
             return;
         }
 
