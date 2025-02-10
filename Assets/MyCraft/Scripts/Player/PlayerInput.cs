@@ -75,10 +75,12 @@ public class PlayerInput : BaseUpdatable
         }
         else
         {
-            if (_handleStop != null)
+            if (_handleStop == null)
             {
-                _handleStop.Invoke();
+                return;
+               
             }
+            _handleStop.Invoke();
         }
     }
 
@@ -86,15 +88,17 @@ public class PlayerInput : BaseUpdatable
     {
         if (CanJump)
         {
-            if (_handleJump != null)
+            if (_handleJump == null)
             {
-                _handleJump.Invoke();
+                return;
             }
+            _handleJump.Invoke();
         }
-        if (_handleAttack != null)
+        if (_handleAttack == null)
         {
-            _handleAttack.Invoke();
+            return;
         }
+        _handleAttack.Invoke();
     }
 
 

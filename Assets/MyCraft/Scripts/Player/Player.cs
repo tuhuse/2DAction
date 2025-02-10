@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         if (BaseBodyEquipment == null)
         {
             _equipmentManager.InitializeEquipment();
-            Debug.LogWarning("BaseBodyEquipment initialized dynamically.");
+          
         }
     }
     public BodyEquipmentData GetBodyEquipmentData()
