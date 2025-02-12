@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 548e617e681f57848aa399237df69ca4, type: 3}
-  m_Name: WeaponEquipmentData
+  m_Name: Level2WeaponEquipmentData
   m_EditorClassIdentifier: 
-  _weaponName: "\u901A\u5E38\u88C5\u5099"
-  _attackPower: 0
-  _attackinterval: 0
-  _icon: {fileID: 0}
-  _weaponType: 0
+  _weaponName: "\u9B54\u6CD5\u306E\u6756"
+  _attackPower: 15
+  _attackinterval: 2
+  _icon: {fileID: 21300000, guid: 2edcf2c6a70d4112a722ef201e8fff41, type: 3}
+  _weaponType: 1

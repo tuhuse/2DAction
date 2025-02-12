@@ -7,27 +7,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
   
-    private BaseWeapon _weapon;
-    private BaseDistanceEnemy _distanceEnemy;
+   
+    private BaseAttackRange _distanceEnemy;
     private PlayerEquipmentManager _equipmentManager;
 
-    public BaseDistanceEnemy DistanceEnemy => _distanceEnemy;
+    public BaseAttackRange DistanceEnemy => _distanceEnemy;
+    private BaseWeapon _weapon => _equipmentManager.EquipWeapon;
     private BaseBodyEquipment BaseBodyEquipment => _equipmentManager.BaseBodyEquipment;
-  
-    private void Start()
+    private void Awake()
     {
+
         _equipmentManager = GameObject.FindFirstObjectByType<PlayerEquipmentManager>();
         // 動的にコンポーネントを解決
-        if (!TryGetComponent(out _weapon))
-        {
-            Debug.LogWarning("Weapon component is missing! Adding default.");
-            _weapon = gameObject.AddComponent<SordWeapon>();
-        }
+    }
+    private void Start()
+    {
 
         if (!TryGetComponent(out _distanceEnemy))
         {
             Debug.LogWarning("DistanceEnemy component is missing!");
-            _distanceEnemy = gameObject.AddComponent<SordDistanceEnemy>();
+            _distanceEnemy = gameObject.AddComponent<SordAttackRange>();
         }
     }
 
@@ -80,7 +79,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                _weapon = gameObject.AddComponent<SordWeapon>();
+                _equipmentManager.InitializeWeapon();
             }
             
         }
@@ -97,5 +96,9 @@ public class Player : MonoBehaviour
     public BodyEquipmentData GetBodyEquipmentData()
     {
         return _equipmentManager.CurrentBodyEquipment;
+    }
+    public WeaponEquipmentData GetWeaponData()
+    {
+        return _equipmentManager.CurrentWeaponEquipment;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseDistanceEnemy : MonoBehaviour
+public abstract class BaseAttackRange : MonoBehaviour
 {
     protected Transform[] _enemies;          // “G‚ÌTransform”z—ñ
     protected Transform _nearestEnemy;       // ˆê”Ô‹ß‚¢“G‚ÌTransform

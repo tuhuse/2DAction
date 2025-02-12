@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
-
-    [SerializeField] protected GameObject _weapon = default;
-    [SerializeField] protected float _attackCoolDown = 1f;
+    protected WeaponEquipmentData _weaponData=default;
+   protected GameObject _weapon = default;
+  
     protected bool _isAttackCoolDown = false;
-    public int AttackPower { get; set; }
+    protected GameObject _player;
+    protected float _attackCoolDown => _weaponData.AttackInterval;
+    public int AttackPower => _weaponData.AttackPower;
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+       
+        _weaponData = _player.GetComponent<Player>().GetWeaponData();
+    }
     public void TryAttack()
     {
         if (!_isAttackCoolDown)

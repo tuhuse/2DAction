@@ -7502,7 +7502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 5cca1cf2672764f469e52dda8c21365e, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &600224305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8630,7 +8629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 5d2485934ef67bd44aa68fc40e10fb8b, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &652721737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21326,8 +21324,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2061329458}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1618610849
@@ -21741,7 +21738,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 764621b4015e9d142a0ea6b3a84da65b, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &1651661935
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22476,7 +22472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 8e929977d1d2e034db6560d1b48b8881, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &1688471132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23490,7 +23485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 4f88d87a3c0a3134c9b215008f4e9b9b, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &1810904213
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25109,7 +25103,6 @@ GameObject:
   - component: {fileID: 1912781600}
   - component: {fileID: 1912781609}
   - component: {fileID: 1912781608}
-  - component: {fileID: 1912781607}
   - component: {fileID: 1912781606}
   - component: {fileID: 1912781605}
   - component: {fileID: 1912781603}
@@ -25138,6 +25131,7 @@ Transform:
   - {fileID: 1549871444}
   - {fileID: 1881912512}
   - {fileID: 1065823416}
+  - {fileID: 2061329458}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1912781601
@@ -25204,20 +25198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b241a77036cf44884a9ba342bc4720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1912781607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912781599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5bb416147315ba4bbe7a7cfbab85f0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: 1881912511}
-  _attackCoolDown: 1
+  _enemies: []
+  _nearestEnemy: {fileID: 0}
+  <CanAttack>k__BackingField: 0
 --- !u!114 &1912781608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26665,11 +26648,11 @@ Transform:
   m_GameObject: {fileID: 2061329457}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.807662, y: 6.159422, z: -0.024220863}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.6445179, y: 6.147566, z: -0.016011678}
+  m_LocalScale: {x: 0.66106963, y: 0.66106963, z: 0.66106963}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1618610847}
+  m_Father: {fileID: 1912781600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2061329459
 MonoBehaviour:
@@ -26684,7 +26667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultBodyEquipmentData: {fileID: 11400000, guid: 5cca1cf2672764f469e52dda8c21365e, type: 2}
-  _defaultWeaponData: {fileID: 11400000, guid: fcb72ea0f42b1084f895fe2a090a5ca8, type: 2}
+  _defaultWeaponData: {fileID: 11400000, guid: faa008fec1173cd43b6ac478d344087f, type: 2}
   _playerSprite:
   - {fileID: 279292583}
   - {fileID: 559207693}
@@ -26730,8 +26713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b553bc092e35548a482b38e52526a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyEquipment: []
-  _weaponEquipment: []
 --- !u!114 &2061329463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28035,7 +28016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentdata: {fileID: 11400000, guid: 48bca03033959864eb2e81a0e2f2fc9f, type: 2}
-  _eKey: {fileID: 1466020089}
 --- !u!212 &2141621004
 SpriteRenderer:
   m_ObjectHideFlags: 0

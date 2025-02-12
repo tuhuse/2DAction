@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SordDistanceEnemy : BaseDistanceEnemy
+public class SordAttackRange : BaseAttackRange
 {
    
 

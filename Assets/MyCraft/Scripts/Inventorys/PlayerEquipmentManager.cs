@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
 /// プレイヤーの装備を管理するクラス
@@ -18,6 +19,10 @@ public class PlayerEquipmentManager : MonoBehaviour
     /// </summary>
     public BaseWeapon EquipWeapon { get; private set; }
     /// <summary>
+    /// プレイヤーの射程距離
+    /// </summary>
+    public BaseAttackRange AttackRange { get; private set; }
+    /// <summary>
     ///装備データ
     /// </summary>
     public BodyEquipmentData CurrentBodyEquipment { get; private set; }
@@ -30,6 +35,7 @@ public class PlayerEquipmentManager : MonoBehaviour
     {
         _playerController = GameObject.FindFirstObjectByType<PlayerController>();
         InitializeEquipment();
+        InitializeWeapon();
     }
     /// <summary>
     /// 装備を変更する
@@ -38,7 +44,6 @@ public class PlayerEquipmentManager : MonoBehaviour
     public void ChangeBodyEquipment(BodyEquipmentData bodyEquipmentData)
     {
         HandleBodyEquipmentChange(bodyEquipmentData);
-
     }
     /// <summary>
     /// 武器を変更する
@@ -59,6 +64,14 @@ public class PlayerEquipmentManager : MonoBehaviour
             BaseBodyEquipment = gameObject.AddComponent<NomalBodyEquipment>();
             CurrentBodyEquipment = _defaultBodyEquipmentData;
             _playerController.PlayerStatus.ChangeEquipment(BaseBodyEquipment);
+        }
+    }  public void InitializeWeapon()
+    {
+        if (EquipWeapon == null)
+        {
+            EquipWeapon = gameObject.AddComponent<SordWeapon>();
+            AttackRange = gameObject.AddComponent<SordAttackRange>();
+            CurrentWeaponEquipment = _defaultWeaponData;
         }
     }
     /// <summary>
@@ -98,12 +111,18 @@ public class PlayerEquipmentManager : MonoBehaviour
     /// </summary>
     private void ApplyWeaponType()
     {
-        if (CurrentWeaponEquipment == null) return;
-
+        if (CurrentWeaponEquipment != null)
+        {
+            Destroy(EquipWeapon);
+        }
+        
         switch (CurrentWeaponEquipment.Weapon)
         {
             case WeaponEquipmentData.WeaponType.MeleeWeapon:
-                // 近距離武器用の処理
+
+                EquipWeapon = gameObject.AddComponent<SordWeapon>();
+                AttackRange = gameObject.AddComponent<SordAttackRange>();
+                
                 break;
             case WeaponEquipmentData.WeaponType.RangeWeapon:
                 // 遠距離武器用の処理

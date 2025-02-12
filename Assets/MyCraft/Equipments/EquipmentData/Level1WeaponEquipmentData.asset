@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e617e681f57848aa399237df69ca4, type: 3}
   m_Name: Level1WeaponEquipmentData
   m_EditorClassIdentifier: 
-  _weaponName: "\u901A\u5E38\u88C5\u5099"
-  _attackPower: 0
-  _attackinterval: 0
-  _icon: {fileID: 0}
+  _weaponName: "\u5263"
+  _attackPower: 10
+  _attackinterval: 2
+  _icon: {fileID: 21300000, guid: b4cecd4342cb4cbaaa740f5587ffedb2, type: 3}
   _weaponType: 0
