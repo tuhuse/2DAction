@@ -70,8 +70,12 @@ public class PlayerEquipmentManager : MonoBehaviour
         if (EquipWeapon == null)
         {
             EquipWeapon = gameObject.AddComponent<SordWeapon>();
-            AttackRange = gameObject.AddComponent<SordAttackRange>();
+           
             CurrentWeaponEquipment = _defaultWeaponData;
+        }
+        if (AttackRange == null)
+        {
+            AttackRange = gameObject.AddComponent<SordAttackRange>();
         }
     }
     /// <summary>
@@ -115,7 +119,10 @@ public class PlayerEquipmentManager : MonoBehaviour
         {
             Destroy(EquipWeapon);
         }
-        
+        if (AttackRange !=null)
+        {
+            Destroy(AttackRange);
+        }
         switch (CurrentWeaponEquipment.Weapon)
         {
             case WeaponEquipmentData.WeaponType.MeleeWeapon:

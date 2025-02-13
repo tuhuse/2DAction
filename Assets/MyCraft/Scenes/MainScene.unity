@@ -24581,7 +24581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1881912512
 Transform:
   m_ObjectHideFlags: 0
@@ -25103,7 +25103,6 @@ GameObject:
   - component: {fileID: 1912781600}
   - component: {fileID: 1912781609}
   - component: {fileID: 1912781608}
-  - component: {fileID: 1912781606}
   - component: {fileID: 1912781605}
   - component: {fileID: 1912781603}
   - component: {fileID: 1912781601}
@@ -25186,21 +25185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f91811455c342c47af3cb4722711e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1912781606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912781599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b241a77036cf44884a9ba342bc4720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemies: []
-  _nearestEnemy: {fileID: 0}
-  <CanAttack>k__BackingField: 0
 --- !u!114 &1912781608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26648,7 +26632,7 @@ Transform:
   m_GameObject: {fileID: 2061329457}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6445179, y: 6.147566, z: -0.016011678}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.66106963, y: 0.66106963, z: 0.66106963}
   m_ConstrainProportionsScale: 0
   m_Children: []

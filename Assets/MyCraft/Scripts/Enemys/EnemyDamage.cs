@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
     private EnemyStatus _enemyStatus;
-    private GameObject _player;
+    private Player _player;
     private Rigidbody2D _rb;
     [TagSelector, SerializeField] private string _playerTag;
     [TagSelector, SerializeField] private string _sordTag;
@@ -15,7 +13,7 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
         _enemyStatus = GetComponent<EnemyStatus>();
-        _player = GameObject.FindGameObjectWithTag(_playerTag);
+        _player = GameObject.FindFirstObjectByType<Player>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -25,13 +23,14 @@ public class EnemyDamage : MonoBehaviour
         {
             if (this.gameObject.CompareTag("StandEnemy"))
             {
-                _enemyStatus.TakeDamage(_player.GetComponent<SordWeapon>().AttackPower);
+                _enemyStatus.TakeDamage(_player.Weapon.AttackPower);
 
             }
             else
             {
-                _enemyStatus.TakeDamage(_player.GetComponent<SordWeapon>().AttackPower);
-
+                
+                _enemyStatus.TakeDamage(_player.Weapon.AttackPower);
+                
                 // ノックバックの方向を計算（敵 → プレイヤーの逆方向）
                 Vector2 knockbackDirection = (transform.position - _player.transform.position).normalized;
 

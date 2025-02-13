@@ -34,15 +34,16 @@ public class EnemyStatus : MonoBehaviour
         int totalDefense = EnemyDefense;
         float effectiveDamage = Mathf.Max(0, damage - totalDefense); // 防御力を減算
         //effectiveDamage *= DamageMultiplier; // ダメージ倍率を適用
-
          // 体力を減少
         if (effectiveDamage>damage)
         {
             _currentHealth--;
+           
         }
         else
         {         
             _currentHealth -= Mathf.RoundToInt(effectiveDamage);
+           
         }
        
         Debug.Log($"ダメージ受けた: {Mathf.RoundToInt(effectiveDamage)} 現在HP: {_currentHealth}");

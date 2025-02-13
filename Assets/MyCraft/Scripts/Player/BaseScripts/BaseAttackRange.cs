@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// UŒ‚”ÍˆÍ
+/// </summary>
 public abstract class BaseAttackRange : MonoBehaviour
 {
+    [SerializeField]
     protected Transform[] _enemies;          // “G‚ÌTransform”z—ñ
     protected Transform _nearestEnemy;       // ˆê”Ô‹ß‚¢“G‚ÌTransform
     protected const float DETECTION_RADIUS = 10f;  // “G‚ğŒŸo‚·‚éÅ‘å‹——£
     public bool CanAttack { get; set; }
    
 
-    void Update()
+   protected void Update()
     {
         FindNearestEnemy();
+   
     }
 
     /// <summary>

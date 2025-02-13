@@ -7,12 +7,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
   
-   
-    private BaseAttackRange _distanceEnemy;
     private PlayerEquipmentManager _equipmentManager;
 
-    public BaseAttackRange DistanceEnemy => _distanceEnemy;
-    private BaseWeapon _weapon => _equipmentManager.EquipWeapon;
+    public BaseAttackRange DistanceEnemy =>_equipmentManager.AttackRange;
+    public BaseWeapon Weapon => _equipmentManager.EquipWeapon;
     private BaseBodyEquipment BaseBodyEquipment => _equipmentManager.BaseBodyEquipment;
     private void Awake()
     {
@@ -20,17 +18,6 @@ public class Player : MonoBehaviour
         _equipmentManager = GameObject.FindFirstObjectByType<PlayerEquipmentManager>();
         // 動的にコンポーネントを解決
     }
-    private void Start()
-    {
-
-        if (!TryGetComponent(out _distanceEnemy))
-        {
-            Debug.LogWarning("DistanceEnemy component is missing!");
-            _distanceEnemy = gameObject.AddComponent<SordAttackRange>();
-        }
-    }
-
-
     public void RightWalk()
     {
         EnsureEquipmentInitialized();
@@ -47,9 +34,7 @@ public class Player : MonoBehaviour
     {
         EnsureEquipmentInitialized();
         if (BaseBodyEquipment != null)
-        {
-           
-           
+        {        
                 BaseBodyEquipment.LeftWalk();
                 this.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
@@ -71,17 +56,14 @@ public class Player : MonoBehaviour
     }
     public void Attack()
     {
-        if (_distanceEnemy.CanAttack)
+        if (DistanceEnemy == null|| Weapon == null)
         {
-            if (_weapon != null)
-            {
-                _weapon.TryAttack();
-            }
-            else
-            {
-                _equipmentManager.InitializeWeapon();
-            }
-            
+            _equipmentManager.InitializeWeapon();
+            return;
+        }
+        if (DistanceEnemy.CanAttack)
+        {         
+                Weapon.TryAttack();           
         }
         
     }

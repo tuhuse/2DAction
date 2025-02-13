@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Level1WeaponEquipmentData
   m_EditorClassIdentifier: 
   _weaponName: "\u5263"
-  _attackPower: 10
+  _attackPower: 300
   _attackinterval: 2
+  _attackingTime: 1
   _icon: {fileID: 21300000, guid: b4cecd4342cb4cbaaa740f5587ffedb2, type: 3}
   _weaponType: 0

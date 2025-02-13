@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class SordWeapon : BaseWeapon
 {
-    
-   
+
     public override void Attack()
     {
-       
-        StartCoroutine(AttackCoolDown());
+            StartCoroutine(AttackCoolDown());
     }
     protected IEnumerator AttackCoolDown()
     {
         _weapon.SetActive(true);
         _isAttackCoolDown = true;
-        yield return new WaitForSeconds(_attackCoolDown);
+        float totalTime = AttackingTime + AttackInterval;
+        yield return new WaitForSeconds(AttackingTime);
         _weapon.SetActive(false);
-        yield return new WaitForSeconds(_attackCoolDown);
+        print("End");
+        yield return new WaitForSeconds(AttackInterval);
         _isAttackCoolDown = false;
+        print("Start");
+        Debug.Log("Total Cooldown Time: " + totalTime);
     }
 }
