@@ -17,4 +17,5 @@ MonoBehaviour:
   _attackinterval: 2
   _attackingTime: 1
   _icon: {fileID: 21300000, guid: b4cecd4342cb4cbaaa740f5587ffedb2, type: 3}
+  _weaponObject: {fileID: 1688293334529054780, guid: d08351666cbc7da459b1226502a06130, type: 3}
   _weaponType: 0

@@ -7,6 +7,7 @@ public class WeaponEquipmentData : ScriptableObject
     [SerializeField] private float _attackinterval;
     [SerializeField] private float _attackingTime;
     [SerializeField] private Sprite _icon;
+    [SerializeField] private GameObject _weaponObject;
     public enum WeaponType
     {
         MeleeWeapon,
@@ -19,5 +20,6 @@ public class WeaponEquipmentData : ScriptableObject
     public float AttackInterval => _attackinterval;
     public float AttackingTime => _attackingTime;
     public Sprite Icon => _icon;
+    public GameObject WeaponObject => _weaponObject;
     public WeaponType Weapon => _weaponType;
 }
